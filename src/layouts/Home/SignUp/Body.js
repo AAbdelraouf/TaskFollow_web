@@ -3,7 +3,7 @@ import React from 'react';
 //import { Header } from '@/components';
 import { Form, ButtonToolbar, Button, Input, InputGroup, InputNumber } from 'rsuite';
 
-const Body = ({ _this }) => {
+const Body = () => {
   const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
   return (
     <div className="w-screen flex flex-col sm:flex-row justify-center h-screen home_gradient_bg">
@@ -13,42 +13,46 @@ const Body = ({ _this }) => {
           <h1 className=" ml-7 text-4xl font-medium text-left whitespace-normal break-normal leading-normal">
             Get Started Absolutely Free
           </h1>
-          <h1 className=" ml-7 mt-4 text-xl font-medium text-left text-gray-400">
-            Sign In To Your Account
+          <h1 className=" ml-7 mt-3 text-xl font-medium text-left text-gray-400">
+            Create A Business Account
           </h1>
-          <Form
-            fluid
-            ref={_this.formRef}
-            onChange={_this.setFormValue}
-            onCheck={_this.setFormError}
-            formValue={_this.formValue}
-            className="flex flex-col p-7 justify-between"
-          >
-            <Form.Group controlId="email-1" className="my-4">
+          <Form fluid className="flex flex-col p-7 justiy-center">
+            <Form.Group controlId="name-1">
+              <Form.ControlLabel className="text-xs font-extrabold ">
+                BUSINESS NAME
+              </Form.ControlLabel>
+              <Form.Control name="email" type="email" />
+            </Form.Group>
+            <Form.Group controlId="email-1">
               <Form.ControlLabel className="text-xs font-extrabold ">
                 BUSINESS EMAIL ADDRESS
               </Form.ControlLabel>
               <Form.Control name="email" type="email" />
             </Form.Group>
 
-            <Form.Group controlId="password-1" className="my-4">
+            <Form.Group controlId="password-1">
               <Form.ControlLabel className="text-xs font-extrabold ">PASSWORD</Form.ControlLabel>
               <Form.Control name="password" type="password" autoComplete="off" />
             </Form.Group>
+
+            <Form.Group controlId="cnf-password">
+              <Form.ControlLabel className="text-xs font-extrabold ">
+                CONFIRM PASSWORD
+              </Form.ControlLabel>
+              <Form.Control name="password" type="password" autoComplete="off" />
+            </Form.Group>
+
             <Form.Group>
               <Button
-                onClick={() => {
-                  _this.onLogin();
-                }}
-                className="w-72 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full mt-4"
+                className="w-72 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full"
                 block
               >
-                Login
+                Get Started
               </Button>
               <p className=" m-2 text-sm font-medium text-center text-gray-400">
-                Don't have an account?
-                <Link href={'sign-up'}>
-                  <span className="cursor-pointer text-primary"> Sign Up</span>
+                Already have an account?{' '}
+                <Link href={'/'}>
+                  <span className="cursor-pointer text-primary">Sign In</span>
                 </Link>
               </p>
             </Form.Group>
