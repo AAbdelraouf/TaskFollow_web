@@ -18,7 +18,8 @@ const Home = () => {
 
   const onLogin = () => {
     dispatch(loadingStart());
-    API.Login(formValue)
+    API.auth
+      .Login(formValue)
       .then((response) => {
         if (response) {
           dispatch(login(response));
