@@ -24,20 +24,17 @@ const sessionData = createSlice({
       localStorage.removeItem('userSession');
       localStorage.removeItem('cart');
       localStorage.clear();
+    },
+    signup: (state, action) => {
+      state.userSession = action.payload;
+      localStorage.setItem('userSession', JSON.stringify(state.userSession));
+    },
+    navbarToggle: (state, action) => {
+      state.isNavbarExpanded = action.payload;
+    },
+    loadSessionFromLocal: (state, action) => {
+      state.userSession = action.payload;
     }
-    // signup: (state, action) => {
-    //   state.userSession = action.payload;
-    //   localStorage.setItem('userSession', JSON.stringify(state.userSession));
-    // },
-    // navbarToggle: (state, action) => {
-    //   state.isNavbarExpanded = action.payload;
-    // },
-    // loadSessionFromLocal: (state, action) => {
-    //   state.userSession = action.payload;
-    // },
-    // isCartPageRedirect: (state) => {
-    //   state.isCartPage = true;
-    // }
   }
 });
 

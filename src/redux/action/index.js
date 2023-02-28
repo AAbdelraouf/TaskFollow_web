@@ -6,8 +6,7 @@ export const {
   loadingStop,
   login,
   logout,
-  signup
-  // navbarToggle,
-  // loadSessionFromLocal,
-  // isCartPageRedirect
+  signup,
+  navbarToggle,
+  loadSessionFromLocal
 } = sessionActions;

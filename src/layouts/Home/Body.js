@@ -3,7 +3,7 @@ import React from 'react';
 //import { Header } from '@/components';
 import { Form, ButtonToolbar, Button, Input, InputGroup, InputNumber } from 'rsuite';
 
-const Body = ({ _this }) => {
+const Body = (_this) => {
   const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
   return (
     <div className="w-screen flex flex-col sm:flex-row justify-center h-screen home_gradient_bg">

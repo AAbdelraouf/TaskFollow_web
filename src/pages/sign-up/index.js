@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import SignUp from '@/layouts/Home/SignUp';
+import SignUp from '@/layouts/SignUp';
 
 const Page = () => {
   return (

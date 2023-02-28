@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Button } from 'rsuite';
 import Body from './Body';
-import apiPool from '@/api';
+import API from '@/api';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,8 +18,7 @@ const Home = () => {
 
   const onLogin = () => {
     dispatch(loadingStart());
-    apiPool
-      .Login(formValue)
+    API.Login(formValue)
       .then((response) => {
         if (response) {
           dispatch(login(response));
@@ -32,18 +30,18 @@ const Home = () => {
       });
   };
 
+  const _this = {
+    formRef,
+    formError,
+    formValue,
+    setFormError,
+    setFormValue,
+    onLogin
+  };
+
   return (
     <main>
-      <Body
-        _this={{
-          formRef,
-          formError,
-          setFormError,
-          formValue,
-          setFormValue,
-          onLogin
-        }}
-      />
+      <Body {..._this} />
     </main>
   );
 };
