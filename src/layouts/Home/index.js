@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Body from './Body';
 import API from '@/api';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loadingStart, loadingStop, login } from '@/redux/action';
 
 const Home = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const dispatch = useDispatch();
   const formRef = useRef();
   const [formError, setFormError] = useState({});
