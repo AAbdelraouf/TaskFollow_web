@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button, Input } from 'antd';
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 const Login = ({ _this }) => {
   return (
@@ -15,11 +15,12 @@ const Login = ({ _this }) => {
         </h1>
 
         <div className="ml-7">
-          <div className="flex flex-col justify-center mb-8">
-            <p className="text-xs text-gray-700  font-semibold">BUSINESS EMAIL ADDRESS</p>
+          <div className="flex flex-col justify-center mb-6">
+            <label className="text-sm text-gray-500 font-medium mb-2">Business Email Address</label>
             <Input
               className="w-72 h-9"
-              label={'EMAIL'}
+              placeholder="Business Email Address"
+              label={'email'}
               onChange={(e) => {
                 _this.setFormValue((prev) => ({
                   ...prev,
@@ -29,12 +30,13 @@ const Login = ({ _this }) => {
             />
           </div>
 
-          <div className="flex flex-col justify-center mb-4">
-            <p className="text-xs text-gray-700 font-semibold ">PASSWORD</p>
+          <div className="flex flex-col justify-center mb-8">
+            <label className="text-sm text-gray-500 font-medium mb-2">Password</label>
             <Input.Password
               className="w-72 h-9"
+              placeholder="Password"
               label={'Password'}
-              iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)}
+              iconRender={(visible) => (visible ? <BsEye size={15} /> : <BsEyeSlash size={15} />)}
               onChange={(e) => {
                 _this.setFormValue((prev) => ({
                   ...prev,
@@ -48,7 +50,7 @@ const Login = ({ _this }) => {
             onClick={() => {
               _this.onLogin();
             }}
-            className=" bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full mt-4"
+            className="mb-2 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full mt-4"
             block
           >
             Login
