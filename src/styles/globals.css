@@ -1,5 +1,4 @@
-@import '~rsuite/dist/rsuite.min.css';
-@enable-css-reset: false;
+
 
 @tailwind base;
 @tailwind components;
@@ -7,6 +6,7 @@
 
 :root {
   --rs-body: #edf6ff;
+
 }
 
 .home_gradient_bg {

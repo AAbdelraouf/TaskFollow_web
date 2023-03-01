@@ -1,82 +1,101 @@
 import Link from 'next/link';
 import React from 'react';
 import Marketing from '../Home/Marketing';
-import OTPInput, { ResendOTP } from 'otp-input-react';
+import OTPInput from 'otp-input-react';
 import { BsPlusSquareFill } from 'react-icons/bs';
-import { Form, ButtonToolbar, Button, Input, InputGroup, InputNumber, SelectPicker } from 'rsuite';
-import FormControl from 'rsuite/esm/FormControl';
-import FormControlLabel from 'rsuite/esm/FormControlLabel';
+import { Button, Input, Select } from 'antd';
+import { EyeInvisibleOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const Body = ({ _this }) => {
-  const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
-
-  const data = ['Eugenia', 'Bryan', 'Linda', 'Nancy', 'Lloyd', 'Alice', 'Julia', 'Albert'].map(
-    (item) => ({ label: item, value: item })
-  );
   return (
     <div className="w-screen flex flex-col sm:flex-row justify-center h-screen home_gradient_bg">
       <div className="flex-1 flex basis-1/4 justify-start">
         <div className="flex sm:w-[425px] w-full flex-col bg-white justify-center items-start p-6">
           {!_this.enterBusinessDetails && (
-            <h1 className=" ml-7 text-4xl font-medium text-left whitespace-normal break-normal leading-normal">
+            <h1 className="ml-7 text-4xl font-medium text-left whitespace-normal break-normal leading-normal text-gray-700">
               Get Started <br /> Absolutely Free
             </h1>
           )}
 
-          <h1 className=" ml-7 mt-3 text-xl font-medium text-left text-gray-400">
+          <h1 className=" ml-7  mt-3 text-xl font-medium text-left text-gray-400">
             {_this.enterBusinessDetails
               ? 'Enter Your Business Details'
               : 'Create Your Business Account'}
           </h1>
 
           {_this.otpReceived === false && _this.enterBusinessDetails === false ? (
-            <Form
-              fluid
-              className="flex flex-col p-7 justiy-center"
-              onChange={_this.setFormValue}
-              formValue={_this.formValue}
-            >
-              <Form.Group controlId="name-1">
-                <Form.ControlLabel className="text-xs font-extrabold ">
-                  BUSINESS NAME
-                </Form.ControlLabel>
-                <Form.Control name="name" type="name" />
-              </Form.Group>
-              <Form.Group controlId="email-1">
-                <Form.ControlLabel className="text-xs font-extrabold ">
-                  BUSINESS EMAIL ADDRESS
-                </Form.ControlLabel>
-                <Form.Control name="email" type="email" />
-              </Form.Group>
+            <div className="flex flex-col justify-center items-center ml-7 my-4">
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold ">BUSINESS NAME</p>
+                <Input
+                  className="w-72 h-9"
+                  label={'name'}
+                  onChange={(e) => {
+                    _this.setFormValue((prev) => ({
+                      ...prev,
+                      name: e.target.value
+                    }));
+                  }}
+                />
+              </div>
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold ">BUSINESS EMAIL ADDRESS</p>
+                <Input
+                  className="w-72 h-9"
+                  label={'email'}
+                  onChange={(e) => {
+                    _this.setFormValue((prev) => ({
+                      ...prev,
+                      email: e.target.value
+                    }));
+                  }}
+                />
+              </div>
 
-              <Form.Group controlId="password-1">
-                <Form.ControlLabel className="text-xs font-extrabold ">PASSWORD</Form.ControlLabel>
-                <Form.Control name="password" type="password" autoComplete="off" />
-              </Form.Group>
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold ">PASSWORD</p>
+                <Input.Password
+                  className="w-72 h-9"
+                  label={'Password'}
+                  iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)}
+                  onChange={(e) => {
+                    _this.setFormValue((prev) => ({
+                      ...prev,
+                      password: e.target.value
+                    }));
+                  }}
+                />
+              </div>
 
-              <Form.Group controlId="cnf-password">
-                <Form.ControlLabel className="text-xs font-extrabold ">
-                  CONFIRM PASSWORD
-                </Form.ControlLabel>
-                <Form.Control name="confirmPassword" type="password" autoComplete="off" />
-              </Form.Group>
+              <div className="flex flex-col justify-center mb-4">
+                <p className="text-xs text-gray-700 font-semibold ">CONFIRM PASSWORD</p>
+                <Input.Password
+                  className="w-72 h-9"
+                  label={'Password'}
+                  iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)}
+                  onChange={(e) => {
+                    _this.setFormValue((prev) => ({
+                      ...prev,
+                      confirmPassword: e.target.value
+                    }));
+                  }}
+                />
+              </div>
 
-              <Form.Group>
-                <Button
-                  onClick={() => _this.onSignUp()}
-                  className="w-72 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full"
-                  block
-                >
-                  Get Started
-                </Button>
-                <p className=" m-2 text-sm font-medium text-center text-gray-400">
-                  Already have an account?{' '}
-                  <Link href="/">
-                    <span className="cursor-pointer text-primary">Sign In</span>
-                  </Link>
-                </p>
-              </Form.Group>
-            </Form>
+              <Button
+                onClick={() => _this.onSignUp()}
+                className=" bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full"
+                block
+              >
+                Get Started
+              </Button>
+              <p className=" m-2 text-sm font-medium text-center text-gray-400">
+                Already have an account?{' '}
+                <Link href="/">
+                  <span className="cursor-pointer text-primary">Sign In</span>
+                </Link>
+              </p>
+            </div>
           ) : _this.otpReceived === true ? (
             <div className="m-auto sm:m-9">
               <p className="text-sm font-extrabold text-center mb-4 mr-4">Enter the OTP</p>
@@ -104,66 +123,128 @@ const Body = ({ _this }) => {
               </Button>
             </div>
           ) : (
-            <div>
-              <Form
-                fluid
-                className="flex flex-col p-7 justiy-center"
-                onChange={_this.setBusinessDetails}
-                formValue={_this.businessDetails}
-              >
-                <Form.Group controlId="businessDescription">
-                  <Form.ControlLabel className="text-xs font-extrabold w-72 ">
-                    BUSINESS DESCRIPTION
-                  </Form.ControlLabel>
-                  <Form.Control name="business_description" rows={3} accepter={Textarea} />
-                </Form.Group>
-
-                <Form.Group controlId="businessAddress">
-                  <Form.ControlLabel className="text-xs font-extrabold ">
-                    BUSINESS ADDRESS
-                  </Form.ControlLabel>
-                  <Form.Control name="business_address" rows={3} accepter={Textarea} />
-                </Form.Group>
-
-                <Form.Group controlId="country">
-                  <Form.ControlLabel className="text-xs font-extrabold ">
-                    Select Country
-                  </Form.ControlLabel>
-                  <SelectPicker data={data} name="country_code" className="w-72" />
-                </Form.Group>
-
-                <Form.Group controlId="mobileNumber">
-                  <Form.ControlLabel className="text-xs font-extrabold ">PHONE</Form.ControlLabel>
-                  <Form.Control name="business_phone" type="name" />
-                </Form.Group>
-
-                <Form.Group controlId="services">
-                  <Form.ControlLabel className="text-xs font-extrabold ">
-                    SERVICES
-                  </Form.ControlLabel>
-                  <InputGroup>
-                    <Form.Control name="business_services_offered" type="name" />
-                    <InputGroup.Addon>
-                      <BsPlusSquareFill
-                        size={20}
-                        fill="#2C5E9E"
-                        className="text-primary cursor-pointer font-extrabold"
-                        onClick={null}
-                      />
-                    </InputGroup.Addon>
-                  </InputGroup>
-                </Form.Group>
-
-                <Button
-                  onClick={() => {
-                    _this.onBusinessDetailsSubmit();
+            <div className="flex flex-col justify-center items-center ml-7 my-4">
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold ">BUSINESS DESCRIPTION</p>
+                <Input.TextArea
+                  className="w-72 h-9"
+                  label={'business_description'}
+                  autoSize={{
+                    minRows: 3,
+                    maxRows: 5
                   }}
-                  className="w-72 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full"
-                  block
-                >
-                  Add Business
-                </Button>
-              </Form>
+                  onChange={(e) => {
+                    _this.setBusinessDetails((prev) => ({
+                      ...prev,
+                      business_description: e.target.value
+                    }));
+                  }}
+                />
+              </div>
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold ">BUSINESS ADDRESS</p>
+                <Input.TextArea
+                  className="w-72 h-9"
+                  label={'business_description'}
+                  autoSize={{
+                    minRows: 3,
+                    maxRows: 5
+                  }}
+                  onChange={(e) => {
+                    _this.setBusinessDetails((prev) => ({
+                      ...prev,
+                      business_address: e.target.value
+                    }));
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-col justify-center mb-2">
+                <p className="text-xs text-gray-700 font-semibold">COUNTRY</p>
+                <Select
+                  showSearch
+                  className="w-72 h-9"
+                  value={_this.businessDetails.country_code}
+                  onChange={(value) => {
+                    _this.setBusinessDetails((prev) => ({
+                      ...prev,
+                      country_code: value
+                    }));
+                  }}
+                  filterOption={(input, option) => {
+                    return (option?.label?.key ?? '').toLowerCase().includes(input.toLowerCase());
+                  }}
+                  options={_this.countryList.map((item, index) => ({
+                    label: (
+                      <div className="flex flex-row justify-start items-center" key={item.name}>
+                        <img className="w-5 h-5" src={item.flag} alt="flag" />
+
+                        <div className="ml-2 w-10">+{item.callingCode}</div>
+                        <div className="ml-2">{item.name}</div>
+                      </div>
+                    ),
+                    value: '+' + item.callingCode
+                  }))}
+                />
+              </div>
+
+              <div className="flex flex-col justify-center mb-4">
+                <p className="text-xs text-gray-700 font-semibold ">PHONE</p>
+                <Input
+                  addonBefore={_this.businessDetails.country_code}
+                  className="w-72 h-9"
+                  label={'business_phone'}
+                  onChange={(e) => {
+                    _this.setBusinessDetails((prev) => ({
+                      ...prev,
+                      business_phone: e.target.value
+                    }));
+                  }}
+                />
+              </div>
+              <div className="flex flex-col justify-center mb-4">
+                <p className="text-xs text-gray-700 font-semibold ">SERVICES</p>
+                <Input
+                  value={_this.servicesInput}
+                  addonAfter={
+                    <BsPlusSquareFill
+                      size={20}
+                      fill="#2C5E9E"
+                      cursor="pointer"
+                      onClick={_this.onServiceAdd}
+                    />
+                  }
+                  className="w-72 h-9"
+                  label={'business_phone'}
+                  onChange={(e) => {
+                    _this.setServicesInput(e.target.value);
+                  }}
+                />
+                {_this.businessDetails?.business_services_offered?.map((item, index) => (
+                  <div
+                    className="flex justify-between items-center w-64 rounded-full bg-slate-200 px-4 my-1 h-10"
+                    key={index}
+                  >
+                    <span className="text-xs text-gray-700 font-bold">{item}</span>
+                    <DeleteOutlined
+                      fill="#2C5E9E"
+                      size={20}
+                      className="hover:text-red-500 cursor-pointer font-bold"
+                      onClick={(index) => {
+                        _this.onServiceDelete(index);
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                onClick={() => _this.onBusinessDetailsSubmit()}
+                className=" bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full"
+                block
+              >
+                Submit Business Details
+              </Button>
             </div>
           )}
         </div>
