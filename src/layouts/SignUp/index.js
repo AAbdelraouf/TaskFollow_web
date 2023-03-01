@@ -16,7 +16,7 @@ const SignUp = () => {
   const [servicesInput, setServicesInput] = useState('');
   const [enterBusinessDetails, setEnterBusinessSetails] = useState(false);
   const [businessDetails, setBusinessDetails] = useState({
-    country_code: '+' + '',
+    country_code: '+91',
     business_phone: '',
     business_description: '',
     business_address: '',
