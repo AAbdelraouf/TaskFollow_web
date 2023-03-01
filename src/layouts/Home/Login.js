@@ -6,7 +6,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 const Login = ({ _this }) => {
   return (
     <div className="flex-1 flex basis-1/4 justify-start">
-      <div className="flex sm:w-[425px] w-full flex-col bg-white justify-evenly items-start p-6">
+      <div className="flex sm:w-[425px] w-full flex-col bg-background justify-evenly items-start p-6">
         <h1 className=" ml-7 text-4xl text-gray-700 font-medium text-left whitespace-normal break-normal leading-normal">
           Get Started Absolutely Free
         </h1>

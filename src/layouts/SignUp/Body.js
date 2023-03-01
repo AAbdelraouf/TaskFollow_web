@@ -10,7 +10,7 @@ const Body = ({ _this }) => {
   return (
     <div className="w-screen flex flex-col sm:flex-row justify-center h-screen home_gradient_bg">
       <div className="flex-1 flex basis-1/4 justify-start">
-        <div className="flex sm:w-[425px] w-full flex-col bg-white justify-center items-start p-6">
+        <div className="flex sm:w-[425px] w-full flex-col bg-background justify-center items-start p-6">
           {!_this.enterBusinessDetails && (
             <h1 className="ml-7 text-4xl font-medium text-left whitespace-normal break-normal leading-normal text-gray-700">
               Get Started <br /> Absolutely Free

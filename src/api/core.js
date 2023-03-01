@@ -36,7 +36,10 @@ export const getToken = async () => {
       session.token_expiry = new Date().getTime() + 23 * 60 * 60 * 1000;
       response = session.access_token;
       localStorage.setItem('userSession', JSON.stringify(session));
-    } catch (e) {}
+    } catch (e) {
+      Config.UNAUTHORIZED_EXCEPTION = true;
+      toast.error('You are not authorized for the action.');
+    }
   }
 
   return response;
