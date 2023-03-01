@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: '#2C5E9E';
+  --secondary: '#E65A71';
+  --background: '#EDF6FF';
+}
+
 body {
-  background-color: #edf6ff;
+  background-color: var(--background);
 }
 p {
   margin: 0 !important;
