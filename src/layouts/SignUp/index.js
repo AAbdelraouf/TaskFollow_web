@@ -1,36 +1,37 @@
 import React, { useState } from 'react';
-import { loadingStart, loadingStop, signup } from '@/redux/action';
-import { useDispatch } from 'react-redux';
 import Body from './Body';
 import API from '@/api';
+import { useDispatch } from 'react-redux';
+import { loadingStart, loadingStop, login, signup } from '@/redux/action';
+import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import country_code from '@/utility/country.json';
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const [countryList, setCountryList] = useState(country_code.country_code);
   const [otpReceived, setOtpReceived] = useState(false);
   const [OTP, setOTP] = useState('');
+  const [servicesInput, setServicesInput] = useState('');
   const [enterBusinessDetails, setEnterBusinessSetails] = useState(false);
   const [businessDetails, setBusinessDetails] = useState({
-    country_code: '+91',
+    country_code: '+' + '',
     business_phone: '',
     business_description: '',
     business_address: '',
     business_services_offered: []
   });
 
-  console.log(businessDetails);
   const [formValue, setFormValue] = useState({
     name: '',
     email: '',
-    country_code: '',
-    mobile: '',
     password: '',
     confirmPassword: '',
     otp: '',
     account_type: 'business'
   });
 
-  console.log(OTP);
   const onSignUp = () => {
     if (formValue.password !== formValue.confirmPassword) {
       return toast.error("Password doesn't match");
@@ -41,7 +42,6 @@ const SignUp = () => {
       .then((response) => {
         if (response) {
           if (response.otp) {
-            console.log(response);
             setOtpReceived(true);
             dispatch(signup(response));
             toast.success('Otp has been set to your Email account');
@@ -63,7 +63,6 @@ const SignUp = () => {
       .SignUp(payload)
       .then((response) => {
         if (response) {
-          console.log(response);
           setOtpReceived(false);
           setEnterBusinessSetails(true);
           dispatch(signup(response));
@@ -81,13 +80,34 @@ const SignUp = () => {
       .AddBusinessDetails(businessDetails)
       .then((response) => {
         if (response) {
-          console.log(response);
+          dispatch(login(response));
           toast.success('Business Generated');
+          router.push('/dashboard');
+          setEnterBusinessSetails(false);
         }
       })
       .finally(() => {
         dispatch(loadingStop());
       });
+  };
+
+  const onServiceAdd = () => {
+    const temp = [...businessDetails.business_services_offered, servicesInput];
+
+    setBusinessDetails((prev) => ({
+      ...prev,
+      business_services_offered: temp
+    }));
+    setServicesInput('');
+  };
+
+  const onServiceDelete = (index) => {
+    const temp = [...businessDetails.business_services_offered];
+    temp.splice(index, 1);
+    setBusinessDetails((prev) => ({
+      ...prev,
+      business_services_offered: temp
+    }));
   };
 
   const _this = {
@@ -102,7 +122,12 @@ const SignUp = () => {
     enterBusinessDetails,
     onBusinessDetailsSubmit,
     businessDetails,
-    setBusinessDetails
+    setBusinessDetails,
+    countryList,
+    servicesInput,
+    setServicesInput,
+    onServiceAdd,
+    onServiceDelete
   };
 
   return (
