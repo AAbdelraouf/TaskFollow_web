@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost"],
-  },
+    domains: ['localhost', 'staging-api.taskfollow.net', 'api.taskfollow.net']
+  }
 };
 
 module.exports = nextConfig;
