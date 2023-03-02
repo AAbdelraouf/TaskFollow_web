@@ -5,7 +5,7 @@ import { BsPlusSquareFill } from 'react-icons/bs';
 
 const AddBusinessDetails = ({ _this }) => {
   return (
-    <div className="flex flex-col justify-center items-center ml-7 my-4">
+    <div className="flex flex-col justify-center items-center my-4">
       <div className="flex flex-col justify-center mb-6">
         <label className="text-sm text-gray-500 font-medium mb-4">Business Description</label>
         <Input.TextArea

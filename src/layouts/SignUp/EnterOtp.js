@@ -4,7 +4,7 @@ import { Button, Input } from 'antd';
 const EnterOtp = ({ _this }) => {
   return (
     <div>
-      <div className="ml-7 flex flex-col justify-center items-start h-full sm:h-[60vh]">
+      <div className="flex flex-col justify-center items-start h-full sm:h-[60vh]">
         <label className="text-sm font-medium text-gray-500 text-center mb-4 mt-6">Enter OTP</label>
         <Input
           className="mb-6 w-72"
