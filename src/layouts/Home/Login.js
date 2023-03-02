@@ -62,38 +62,6 @@ const Login = ({ _this }) => {
             </Link>
           </p>
         </div>
-
-        <div className="flex flex-col justify-center mb-8">
-          <label className="text-sm text-gray-500 font-medium mb-2">Password</label>
-          <Input.Password
-            className="w-72 h-9"
-            placeholder="Password"
-            label={'Password'}
-            iconRender={(visible) => (visible ? <BsEye size={15} /> : <BsEyeSlash size={15} />)}
-            onChange={(e) => {
-              _this.setFormValue((prev) => ({
-                ...prev,
-                password: e.target.value
-              }));
-            }}
-          />
-        </div>
-
-        <Button
-          onClick={() => {
-            _this.onLogin();
-          }}
-          className="mb-2 bg-primary hover:bg-primary focus:bg-primary focus:text-gray-300 hover:text-gray-300 text-white text-center h-11 rounded-full mt-4"
-          block
-        >
-          Login
-        </Button>
-        <p className=" m-2 text-sm font-medium text-center text-gray-400">
-          Don't have an account?
-          <Link href="/sign-up">
-            <span className="cursor-pointer text-primary"> Sign Up</span>
-          </Link>
-        </p>
       </div>
     </div>
   );
