@@ -8,9 +8,12 @@ import {
   MenuUnfoldOutlined,
   SearchOutlined
 } from '@ant-design/icons';
+
 import { Typography } from 'antd';
 import { Button, Menu, Input, Card } from 'antd';
 import { useState } from 'react';
+import CustomerList from './CustomerList';
+
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -75,8 +78,8 @@ const Body = () => {
           />
         </div>
 
-        <div className="relative flex flex-col items-top w-[88%] md:w-[93%] h-full z-0 px-5 lg:px-0 bg-background">
-          <Card className="bg-white h-24 flex flex-col justify-center shadow-md p-6 w-full mb-4">
+        <div className="relative flex flex-col items-top w-[88%] md:w-[93%] h-full z-0 px-5 lg:px-0 bg-white">
+          <Card className="bg-background h-24 flex flex-col justify-center shadow-md p-6 w-full mb-4">
             <div className="flex justify-between items-center ">
               <Input
                 size="default-size"
@@ -90,20 +93,7 @@ const Body = () => {
               </Typography.Text>
             </div>
           </Card>
-          <Card className="bg-white h-24 flex flex-col justify-center shadow-md p-6 w-full">
-            <div className="flex justify-between items-center ">
-              <Input
-                size="default-size"
-                className="h-10 w-[300px] mt-2 mr-3 z-0"
-                placeholder="Search"
-                prefix={<SearchOutlined className="mr-2" />}
-              />
-
-              <Typography.Text className="text-xl text-sky-500 pt-2 z-0">
-                Company Name
-              </Typography.Text>
-            </div>
-          </Card>
+          <CustomerList />
         </div>
       </div>
     </>

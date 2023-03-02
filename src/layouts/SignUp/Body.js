@@ -85,7 +85,7 @@ const Body = ({ _this }) => {
               />
             </div>
 
-            <div className="w-72 text-sm text-gray-500 whitespace-normal break-normal text-center mb-2">
+            <div className="w-72 text-sm text-gray-400 whitespace-normal break-normal text-center mb-2">
               <p>
                 By signing up, you agree to our{' '}
                 <span className="text-secondary cursor-pointer">Terms & Conditions</span> and{' '}
@@ -100,7 +100,7 @@ const Body = ({ _this }) => {
             >
               Get Started
             </Button>
-            <p className="m-2 text-sm font-medium text-center text-gray-400">
+            <p className="m-2 text-sm font-medium text-center text-gray-500">
               Already have an account?{' '}
               <Link href="/">
                 <span className="cursor-pointer text-primary">Sign In</span>
