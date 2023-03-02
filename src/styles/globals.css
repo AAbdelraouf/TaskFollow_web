@@ -26,6 +26,11 @@
   --radiantBlue: '#2B5DF5';
 }
 
+:where(.css-dev-only-do-not-override-10ed4xt).ant-btn-default:not(:disabled):hover {
+  color: #fff;
+  border-color: #d9d9d9;
+}
+
 body {
   background-color: var(--background);
   overflow-x: hidden;
@@ -37,5 +42,3 @@ p {
 .home_gradient_bg {
   background: linear-gradient(135deg, #1488cc 0%, #2b32b2 100%);
 }
-
-

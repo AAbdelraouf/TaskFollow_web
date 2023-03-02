@@ -6,9 +6,9 @@ import { MdDeleteForever, MdEditNote } from 'react-icons/md';
 const CustomerList = () => {
   return (
     <Card
-      title={`Customers(2)`}
+      title={`Customers (2)`}
       extra={
-        <div className="w-72 p-4 py-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-sm font-bold rounded-lg hover:text-primary hover:bg-white">
+        <div className="w-72 p-4 py-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-sm font-bold rounded-lg">
           <FaUserPlus size={30} className="mr-2" />
           Add New Customer
         </div>
@@ -39,13 +39,13 @@ const CustomerList = () => {
             <div className="flex items-end justify-end h-full self-end">
               <Button
                 icon={<MdEditNote size={25} />}
-                className=" w-24 flex justify-center items-center bg-grayMedium mx-2 text-white "
+                className=" w-24 flex justify-center items-center bg-grayMedium mx-2 text-white shadow-md"
               >
                 Edit
               </Button>
               <Button
                 icon={<MdDeleteForever size={20} />}
-                className=" flex items-center justify-center mx-2 bg-secondary text-white"
+                className=" flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
               >
                 Delete
               </Button>

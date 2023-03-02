@@ -1,6 +1,6 @@
 import React from 'react';
-const Header = () => {
+const Container = () => {
   return <h1>Header</h1>;
 };
 
-export { Header };
+export { Container };

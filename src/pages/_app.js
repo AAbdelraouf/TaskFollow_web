@@ -9,7 +9,7 @@ import store from '@/redux/store';
 import Config from '@/config';
 
 import '@/styles/globals.css';
-import 'antd/dist/reset.css';
+//import 'antd/dist/reset.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ Component, pageProps }) {
