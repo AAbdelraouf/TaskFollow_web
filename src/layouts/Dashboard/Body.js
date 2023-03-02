@@ -24,7 +24,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 
-const Body = () => {
+const Body = ({ _this }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
@@ -93,7 +93,7 @@ const Body = () => {
               </Typography.Text>
             </div>
           </Card>
-          <CustomerList />
+          <CustomerList _this={_this} />
         </div>
       </div>
     </>
