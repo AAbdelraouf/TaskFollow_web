@@ -13,7 +13,7 @@ const CustomerList = () => {
           Add New Customer
         </div>
       }
-      className="bg-background text-gray-500 tracking-wider h-full flex flex-col justify-start shadow-md w-full"
+      className="bg-background text-gray-500 tracking-wider flex flex-col justify-start w-full"
     >
       <div className="flex justify-center items-center ">
         <Card className="bg-white shadow-md hover:shadow-lg w-full h-36 mb-4">

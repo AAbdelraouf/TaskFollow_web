@@ -26,10 +26,22 @@
   --radiantBlue: '#2B5DF5';
 }
 
+/* Overwrite Antd start */
 :where(.css-dev-only-do-not-override-10ed4xt).ant-btn-default:not(:disabled):hover {
   color: #fff;
   border-color: #d9d9d9;
 }
+:where(.css-dev-only-do-not-override-10ed4xt).ant-menu-light.ant-menu-root.ant-menu-inline,
+:where(.css-dev-only-do-not-override-10ed4xt).ant-menu-light.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none;
+}
+:where(.css-dev-only-do-not-override-10ed4xt).ant-card-bordered {
+  border: none;
+}
+:where(.css-dev-only-do-not-override-10ed4xt).ant-card .ant-card-head {
+  border-bottom: none;
+}
+/* Overwrite Antd end */
 
 body {
   background-color: var(--background);
@@ -41,4 +53,16 @@ p {
 
 .home_gradient_bg {
   background: linear-gradient(135deg, #1488cc 0%, #2b32b2 100%);
+}
+
+.header_nav_profile {
+  border-inline-end: 1px solid rgba(5, 5, 5, 0.06);
+}
+.menu {
+  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  overflow-x: hidden;
+}
+.menu_collapsed {
+  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  width: 78px !important;
 }
