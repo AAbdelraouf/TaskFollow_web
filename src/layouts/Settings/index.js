@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Body from './Body';
+import { Container } from '@/components';
 import API from '@/api';
 
 const Settings = () => {
