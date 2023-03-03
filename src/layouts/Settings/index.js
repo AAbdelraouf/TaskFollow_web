@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Body from './Body';
+import { Container } from '@/components';
 
 const Settings = () => {
   const [categories, setCategories] = useState([]);
@@ -8,10 +9,10 @@ const Settings = () => {
     const fetchedCategories = [
       'first',
       'second',
-      'third',
-      'Category 1',
-      'Category 2',
-      'Category 3'
+      'third'
+      // 'Category 1',
+      // 'Category 2',
+      // 'Category 3'
     ];
     setCategories(fetchedCategories);
   }, []);
@@ -21,9 +22,9 @@ const Settings = () => {
   };
 
   return (
-    <main>
+    <Container>
       <Body _this={_this} />
-    </main>
+    </Container>
   );
 };
 
