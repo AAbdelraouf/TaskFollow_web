@@ -17,11 +17,9 @@ const index = () => {
     setAddCustomerData
   };
   return (
-
     <Container>
-      <Body _this={_this} />
+      <Body {..._this} />
     </Container>
-
   );
 };
 

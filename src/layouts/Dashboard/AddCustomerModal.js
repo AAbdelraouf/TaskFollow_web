@@ -3,7 +3,7 @@ import { Modal, Input, Button } from 'antd';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
-const AddCustomerModal = ({ _this }) => {
+const AddCustomerModal = (_this) => {
   return (
     <>
       <Modal
