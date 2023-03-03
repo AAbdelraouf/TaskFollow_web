@@ -37,21 +37,61 @@ const items = [
 ];
 
 const Container = (props) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
+  useEffect(() => {
+    if (!collapsed) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [collapsed]);
+
   return (
-    <div className="flex flex-1 min-h-screen flex-row relative bg-background">
+    <div className="flex flex-row min-h-screen bg-background">
       <div
-        className={`w-48 relative flex flex-col header_nav_profile menu ${
-          collapsed && 'menu_collapsed'
-        }`}
+        className={
+          collapsed
+            ? `w-0 md:w-24 relative flex flex-col header_nav_profile menu bg-background transition-all`
+            : `w-full md:w-48 pt-5 md:pt-0 h-full absolute md:relative z-10 md:z-0 bg-background transition-all flex flex-col header_nav_profile menu ${
+                collapsed && 'menu_collapsed'
+              }`
+        }
       >
-        <div className="h-40">Name image and profile pic</div>
+        <div
+          className={`py-5 flex flex-col justify-center items-center ${
+            collapsed ? `w-24` : `w-full`
+          } transition-all`}
+        >
+          <span className="h-16 w-16 rounded-full border-2 bg-white text-secondary font-normal text-[40px] flex justify-center items-center">
+            M
+          </span>
+          <div
+            className={
+              collapsed ? 'text-center opacity-0 transition-all' : 'text-center transition-all'
+            }
+          >
+            <h2
+              className={`text-black font-bold text-[21px] pt-2.5 px-1 break-none ${
+                collapsed ? `break-none` : `break-all`
+              }`}
+            >
+              Demo User
+            </h2>
+            <h4
+              className={`text-black font-semibold text-[15px] px-1 break-none ${
+                collapsed ? `break-none` : `break-all`
+              }`}
+            >
+              demouser@gmail.com
+            </h4>
+          </div>
+        </div>
         <Menu
-          className="bg-background border-[0px]"
+          className="bg-background border-[0px] pl-1 md:pl-2 font-semibold h-full"
           defaultSelectedKeys={['dashboard']}
           defaultOpenKeys={[]}
           mode="inline"
@@ -59,24 +99,24 @@ const Container = (props) => {
           items={items}
         />
       </div>
-      <div className="flex-1 px-5 lg:px-0">
-        <div className="flex flex-col justify-center shadow-sm w-full mb-4">
-          <div className="flex justify-between items-center py-2">
-            <div className="ml-3 cursor-pointer" onClick={toggleCollapsed}>
-              {collapsed ? (
-                <MenuUnfoldOutlined className="text-xl" />
-              ) : (
-                <MenuFoldOutlined className="text-xl" />
-              )}
-            </div>
-            <Input
-              size="default-size"
-              className="h-10 w-[300px] mr-3"
-              placeholder="Search"
-              prefix={<SearchOutlined className="mr-2" />}
-            />
+
+      <div className="w-full h-full flex flex-col overflow-hidden">
+        <div className="flex justify-between items-center p-3">
+          <div className="ml-3 cursor-pointer z-20 relative" onClick={toggleCollapsed}>
+            {collapsed ? (
+              <MenuUnfoldOutlined className="text-xl z-20" />
+            ) : (
+              <MenuFoldOutlined className="text-xl z-20" />
+            )}
           </div>
+          <Input
+            size="default-size"
+            className="h-10 w-[240px] sm:w-[300px]"
+            placeholder="Search"
+            prefix={<SearchOutlined className="mr-2" />}
+          />
         </div>
+
         {props.children}
       </div>
     </div>
