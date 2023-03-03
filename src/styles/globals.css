@@ -27,9 +27,14 @@
 }
 
 /* Overwrite Antd start */
+:where(.css-dev-only-do-not-override-10ed4xt).ant-btn-default:not(:disabled) {
+  transition: all 0.3s;
+}
 :where(.css-dev-only-do-not-override-10ed4xt).ant-btn-default:not(:disabled):hover {
   color: #fff;
   border-color: #d9d9d9;
+  filter: brightness(90%);
+  transition: all 0.3s;
 }
 :where(.css-dev-only-do-not-override-10ed4xt).ant-menu-light.ant-menu-root.ant-menu-inline,
 :where(.css-dev-only-do-not-override-10ed4xt).ant-menu-light.ant-menu-root.ant-menu-vertical {
@@ -65,4 +70,11 @@ p {
 .menu_collapsed {
   transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   width: 78px !important;
+}
+.custom_button {
+  transition: all 0.3s;
+}
+.custom_button:hover {
+  filter: brightness(90%);
+  transition: all 0.3s;
 }

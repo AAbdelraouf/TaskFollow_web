@@ -10,7 +10,7 @@ const CustomerList = (_this) => {
       extra={
         <div
           onClick={() => _this.setAddCustomerModalVisibility(true)}
-          className="w-72 p-4 py-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-sm font-bold rounded-lg"
+          className="w-72 p-4 py-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-sm font-bold rounded-lg custom_button"
         >
           <FaUserPlus size={30} className="mr-2" />
           Add New Customer
