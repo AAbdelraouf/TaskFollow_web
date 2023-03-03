@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Body from './Body';
+import { Container } from '@/components';
 
 const index = () => {
   const [addCustomerModalVisibility, setAddCustomerModalVisibility] = useState(false);
@@ -16,9 +17,11 @@ const index = () => {
     setAddCustomerData
   };
   return (
-    <div>
+
+    <Container>
       <Body _this={_this} />
-    </div>
+    </Container>
+
   );
 };
 

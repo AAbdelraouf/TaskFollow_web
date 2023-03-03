@@ -6,6 +6,7 @@ import AddCustomerModal from './AddCustomerModal';
 
 const CustomerList = ({ _this }) => {
   return (
+
     <>
       <Card
         title={`Customers (2)`}
@@ -38,6 +39,7 @@ const CustomerList = ({ _this }) => {
                 </div>
                 <div className="font-semibold text-md">
                   Tasks: <span className="font-normal text-md">0</span>
+
                 </div>
               </div>
 
