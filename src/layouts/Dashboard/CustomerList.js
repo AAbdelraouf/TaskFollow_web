@@ -20,7 +20,7 @@ const CustomerList = (_this) => {
     >
       {_this.getCustomerDetails &&
         _this.getCustomerDetails.map((customer) => (
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center" key={customer._id}>
             <Card className="bg-white shadow-md hover:shadow-lg w-full h-36 mb-4">
               <div className="flex justify-between items-center ">
                 <div>

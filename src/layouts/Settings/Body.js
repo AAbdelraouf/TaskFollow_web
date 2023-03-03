@@ -50,7 +50,6 @@ const Body = ({ _this }) => {
                 <button
                   className="m-3 bg-primary text-white text-center px-3 py-1 rounded-md font-semibold min-w-[80px]"
                   key={category}
-                  ghost="true"
                 >
                   {category}
                 </button>

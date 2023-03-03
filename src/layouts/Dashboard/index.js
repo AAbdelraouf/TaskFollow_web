@@ -7,7 +7,7 @@ import API from '@/api';
 import country_code from '@/utility/country.json';
 import { toast } from 'react-toastify';
 
-const index = () => {
+const Index = () => {
   const dispatch = useDispatch();
   const [countryList, setCountryList] = useState(country_code.country_code);
   const [getCustomerDetails, setGetCustomerDetails] = useState([]);
@@ -114,4 +114,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
