@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, Input, Button, Select } from 'antd';
-import { FaPhoneAlt, FaGlobeAmericas } from 'react-icons/fa';
+import { Modal, Input, Button } from 'antd';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 
