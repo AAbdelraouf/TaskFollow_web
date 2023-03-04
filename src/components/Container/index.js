@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Typography } from 'antd';
+import { Button, Menu, Input, Card } from 'antd';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { Menu, Input } from 'antd';
 import {
@@ -9,24 +12,25 @@ import {
   MenuFoldOutlined,
   SearchOutlined
 } from '@ant-design/icons';
+import Link from 'next/link';
 
 const items = [
   {
-    key: 'dashboard',
+    key: '/dashboard',
     icon: <PieChartOutlined className="py-2" />,
     children: '',
     label: 'Dashboard',
     type: ''
   },
   {
-    key: 'shared-tasks',
+    key: '/dashboard/shared-tasks',
     icon: <DesktopOutlined className="py-2" />,
     children: '',
     label: 'Shared Tasks',
     type: ''
   },
   {
-    key: 'settings',
+    key: '/dashboard/settings',
     icon: <SettingOutlined className="py-2" />,
     children: '',
     label: 'Settings',
@@ -35,6 +39,7 @@ const items = [
 ];
 
 const Container = (props) => {
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(true);
   const userSession = useSelector((state) => state.session.userSession);
 
@@ -91,6 +96,9 @@ const Container = (props) => {
           </div>
         </div>
         <Menu
+          onClick={({ key }) => {
+            router.push(key);
+          }}
           className="bg-background border-[0px] pl-1 md:pl-2 font-semibold h-full"
           defaultSelectedKeys={['dashboard']}
           defaultOpenKeys={[]}
