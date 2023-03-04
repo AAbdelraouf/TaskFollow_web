@@ -82,7 +82,7 @@ const SignUp = () => {
         if (response) {
           dispatch(login(response));
           toast.success('Business Generated');
-          router.push('/dashboard');
+          router.push('/');
           setEnterBusinessSetails(false);
         }
       })

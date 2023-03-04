@@ -20,7 +20,6 @@ const Home = () => {
       .Login(formValue)
       .then((response) => {
         if (response) {
-          console.log(response);
           if (response.account_type === 'customer') {
             return toast.error('Only Business Account is allowed to Login');
           }
