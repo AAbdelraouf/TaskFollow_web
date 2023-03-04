@@ -16,10 +16,6 @@ const AddCustomerModal = (_this) => {
         footer={null}
       >
         <div className="flex flex-col justify-center items-center">
-          <p className="text-xs font-thin italic">
-            <span className="text-red-500">*</span>Regeistered customers will show with their
-            registered name
-          </p>
           <div className="mb-2">
             <Input.Group compact>
               <Button className="text-white bg-primary">
@@ -106,9 +102,14 @@ const AddCustomerModal = (_this) => {
               />
             </Input.Group>
           </div>
+
+          <p className="text-xs font-thin italic my-2">
+            <span className="text-red-500">* </span>Registered customers will show with their
+            registered name
+          </p>
           <Button
             onClick={() => _this.onAddNewCustomer()}
-            className="w-[300px] bg-primary text-white h-9"
+            className="w-[300px] bg-primary text-white h-9 my-2"
           >
             ADD
           </Button>

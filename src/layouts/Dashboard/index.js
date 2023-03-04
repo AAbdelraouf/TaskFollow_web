@@ -13,6 +13,7 @@ const Index = () => {
   const [getCustomerDetails, setGetCustomerDetails] = useState([]);
   const [addCustomerModalVisibility, setAddCustomerModalVisibility] = useState(false);
   const [editCustomerModalVisibility, setEditCustomerModalVisibility] = useState(false);
+  const [deleteCustomerModalVisibility, setDeleteCustomerModalVisibility] = useState(false);
   const [addCustomerData, setAddCustomerData] = useState({
     customer_name: '',
     customer_email: '',
@@ -23,6 +24,9 @@ const Index = () => {
     _id: '',
     name: '',
     email: ''
+  });
+  const [deleteCustomerData, setDeleteCustomerData] = useState({
+    customer_email: ''
   });
 
   useEffect(() => {
@@ -56,6 +60,13 @@ const Index = () => {
       .then((response) => {
         if (response) {
           setAddCustomerModalVisibility(false);
+          setAddCustomerData((prev) => ({
+            ...prev,
+            customer_name: '',
+            customer_email: '',
+            country_code: '+1',
+            customer_mobile: ''
+          }));
           getCustomers();
           toast.success(response.message);
         }
@@ -65,12 +76,14 @@ const Index = () => {
       });
   };
 
-  const onCustomerDelete = (data) => {
+  const onCustomerDelete = () => {
     dispatch(loadingStart());
     API.business
-      .DeleteCustomer(data)
+      .DeleteCustomer(deleteCustomerData)
       .then((response) => {
         if (response) {
+          setDeleteCustomerModalVisibility(false);
+          setDeleteCustomerData({});
           getCustomers();
           toast.success('Customer Removed Successfully');
         }
@@ -85,6 +98,7 @@ const Index = () => {
       .then((response) => {
         if (response) {
           setEditCustomerModalVisibility(false);
+          setEditCustomerData({});
           getCustomers();
           toast.success('Customer Details Edited Successfully');
         }
@@ -105,7 +119,11 @@ const Index = () => {
     setEditCustomerData,
     onAddNewCustomer,
     onCustomerDelete,
-    onEditCustomerDetails
+    onEditCustomerDetails,
+    deleteCustomerModalVisibility,
+    setDeleteCustomerModalVisibility,
+    deleteCustomerData,
+    setDeleteCustomerData
   };
   return (
     <Container>

@@ -18,9 +18,6 @@ const EditCustomerModal = (_this) => {
           footer={null}
         >
           <div className="flex flex-col justify-center items-center">
-            {/* <p className="text-xs font-thin italic">
-              <span className="text-red-500">*</span>Regeistered users are not editable.
-            </p> */}
             <div className="mb-2">
               <Input.Group compact>
                 <Button className="text-white bg-primary">
