@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from 'antd';
-import { Button, Menu, Input, Card } from 'antd';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { Menu, Input } from 'antd';
@@ -12,7 +10,6 @@ import {
   MenuFoldOutlined,
   SearchOutlined
 } from '@ant-design/icons';
-import Link from 'next/link';
 
 const items = [
   {
