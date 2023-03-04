@@ -8,7 +8,7 @@ import { FiLogOut } from 'react-icons/fi';
 import ChangePasswordModal from './ChangePasswordModal';
 import BusinessDetails from './BusinessDetails';
 
-const Body = ({ _this }) => {
+const Body = (_this) => {
   return (
     <>
       <ChangePasswordModal {..._this} /> <BusinessDetails {..._this} />
