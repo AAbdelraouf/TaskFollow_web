@@ -60,7 +60,7 @@ const CustomerList = (_this) => {
                           email: customer.email
                         }));
                       }}
-                      className=" w-24 flex justify-center items-center bg-grayMedium mx-2 text-white shadow-md"
+                      className="w-24 flex justify-center items-center bg-grayMedium mx-2 text-white shadow-md"
                     >
                       Edit
                     </Button>
@@ -74,7 +74,7 @@ const CustomerList = (_this) => {
                           customer_email: customer.email
                         }));
                       }}
-                      className=" flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
+                      className="flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
                     >
                       Delete
                     </Button>
@@ -84,39 +84,6 @@ const CustomerList = (_this) => {
             </div>
           ))}
       </Card>
-
-      {/* -----------------------------------------------------------------Delete Modal---------------------------------------------------------- */}
-      <Modal
-        centered
-        open={_this.deleteCustomerModalVisibility}
-        onOk={() => _this.setDeleteCustomerModalVisibility(false)}
-        onCancel={() => _this.setDeleteCustomerModalVisibility(false)}
-        width={500}
-        footer={null}
-      >
-        <div className="flex flex-col justify-center items-center">
-          <p>
-            Are You Sure You want to delete{' '}
-            <span className="font-semibold">{_this.deleteCustomerData.customer_name}</span>
-          </p>
-          <div className=" mt-6 flex justify-end items-end">
-            <Button
-              icon={<MdCancel size={20} className="mr-1" />}
-              onClick={() => _this.setDeleteCustomerModalVisibility(false)}
-              className=" flex items-center justify-center mx-2 bg-primary text-white shadow-md"
-            >
-              Cancel
-            </Button>
-            <Button
-              icon={<MdDeleteForever size={20} />}
-              onClick={() => _this.onCustomerDelete()}
-              className=" flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-      </Modal>
     </>
   );
 };
