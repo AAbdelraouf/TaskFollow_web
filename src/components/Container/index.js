@@ -58,7 +58,7 @@ const Container = (props) => {
         className={
           collapsed
             ? `w-0 md:w-24 relative flex flex-col header_nav_profile menu bg-background transition-all`
-            : `w-full md:w-48 pt-5 md:pt-0 h-full absolute md:relative z-10 md:z-0 bg-background transition-all flex flex-col header_nav_profile menu ${
+            : `w-full md:w-64 lg:w-72 pt-5 md:pt-0 h-full absolute md:relative z-10 md:z-0 bg-background transition-all flex flex-col header_nav_profile menu ${
                 collapsed && 'menu_collapsed'
               }`
         }
@@ -81,14 +81,14 @@ const Container = (props) => {
                 collapsed ? `break-none` : `break-all`
               }`}
             >
-              {userSession.name}
+              {userSession ? userSession.name : ''}
             </h2>
             <h4
-              className={`text-black font-semibold text-[15px] px-1 break-none ${
+              className={`text-black font-semibold text-[15px] px-1 text-sm break-none ${
                 collapsed ? `break-none` : `break-all`
               }`}
             >
-              {userSession.email}
+              {userSession ? userSession.email : ''}
             </h4>
           </div>
         </div>
@@ -106,7 +106,7 @@ const Container = (props) => {
       </div>
 
       <div className="w-full h-full flex flex-col overflow-hidden">
-        <div className="flex justify-between items-center p-3">
+        <div className="flex justify-between items-center p-3 shadow-md">
           <div className="ml-3 cursor-pointer z-20 relative" onClick={toggleCollapsed}>
             {collapsed ? (
               <MenuUnfoldOutlined className="text-xl z-20" />

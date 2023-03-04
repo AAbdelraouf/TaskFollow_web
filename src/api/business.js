@@ -52,6 +52,45 @@ const business = {
       response = e;
     }
     return handleResponse(response);
+  },
+  DeleteAccount: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/business/delete-profile', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
+  },
+  GetBusinessDetails: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/business/get-business-details', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
+  },
+  changePassword: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/business/change-password', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
   }
 };
 
