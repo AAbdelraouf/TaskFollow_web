@@ -22,10 +22,15 @@ const Settings = () => {
     const fetchedCategories = [
       'first',
       'second',
-      'third'
-      // 'Category 1',
-      // 'Category 2',
-      // 'Category 3'
+      'third',
+      'Category 1',
+      'Category 2',
+      'Category 3',
+      'first',
+      'second',
+      'third',
+      'Category 1',
+      'Category 2'
     ];
     setCategories(fetchedCategories);
   }, []);
