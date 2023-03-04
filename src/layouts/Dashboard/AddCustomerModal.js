@@ -15,9 +15,9 @@ const AddCustomerModal = (_this) => {
         width={500}
         footer={null}
       >
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-xs font-thin italic">
-            <span className="text-red-500">*</span>Regeistered customers will show with their
+        <div className="flex flex-col justify-center items-center gap-1.5 pb-2">
+          <p className="text-xs font-normal italic">
+            <span className="text-red-500 pr-1">*</span>Regeistered customers will show with their
             registered name
           </p>
           <div className="mb-2">
