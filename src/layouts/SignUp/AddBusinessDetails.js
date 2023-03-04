@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Input, Select } from 'antd';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { MdDeleteForever } from 'react-icons/md';
 import { BsPlusSquareFill } from 'react-icons/bs';
 
 const AddBusinessDetails = ({ _this }) => {
@@ -112,8 +112,8 @@ const AddBusinessDetails = ({ _this }) => {
             key={index}
           >
             <span className="text-xs text-gray-700 font-bold">{item}</span>
-            <AiOutlineDelete
-              size={20}
+            <MdDeleteForever
+              size={25}
               className="text-secondary hover:text-red-500 cursor-pointer font-bold"
               onClick={() => {
                 _this.onServiceDelete(index);
