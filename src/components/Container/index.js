@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from 'antd';
-import { Button, Menu, Input, Card } from 'antd';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { Menu, Input } from 'antd';
 import {
-  CloseCircleTwoTone,
   SettingOutlined,
-  CloseOutlined,
   PieChartOutlined,
   DesktopOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   SearchOutlined
 } from '@ant-design/icons';
-import Link from 'next/link';
 
 const items = [
   {
@@ -41,6 +38,8 @@ const items = [
 const Container = (props) => {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(true);
+  const userSession = useSelector((state) => state.session.userSession);
+
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
@@ -70,7 +69,7 @@ const Container = (props) => {
           } transition-all`}
         >
           <span className="h-16 w-16 rounded-full border-2 bg-white text-secondary font-normal text-[40px] flex justify-center items-center">
-            M
+            {userSession ? userSession.name.charAt(0).toUpperCase() : ''}
           </span>
           <div
             className={
@@ -82,14 +81,14 @@ const Container = (props) => {
                 collapsed ? `break-none` : `break-all`
               }`}
             >
-              Demo User
+              {userSession.name}
             </h2>
             <h4
               className={`text-black font-semibold text-[15px] px-1 break-none ${
                 collapsed ? `break-none` : `break-all`
               }`}
             >
-              demouser@gmail.com
+              {userSession.email}
             </h4>
           </div>
         </div>
