@@ -15,15 +15,15 @@ const AddCustomerModal = (_this) => {
         width={500}
         footer={null}
       >
-        <div className="flex flex-col justify-center items-center">
-          <div className="mb-2">
+        <div className="flex flex-col justify-center items-center pt-4">
+          <div className="py-2">
             <Input.Group compact>
               <Button className="text-white bg-primary">
                 <AiOutlineUser size={17} />
               </Button>
               <Input
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="Name"
                 value={_this.addCustomerData.customer_name}
@@ -33,14 +33,14 @@ const AddCustomerModal = (_this) => {
               />
             </Input.Group>
           </div>
-          <div className="mb-2">
+          <div className="py-2">
             <Input.Group compact>
               <Button className="bg-primary text-white">
                 <MdEmail size={17} />
               </Button>
               <Input
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="Email"
                 value={_this.addCustomerData.customer_email}
@@ -50,14 +50,14 @@ const AddCustomerModal = (_this) => {
               />
             </Input.Group>
           </div>
-          <div className="mb-2">
+          <div className="py-2">
             <Input.Group compact>
               <Button className="bg-primary text-white">
                 <FaGlobeAmericas size={17} />
               </Button>
               <Select
                 showSearch
-                className="w-[250px] h-9"
+                className="w-[240px] h-9"
                 value={_this.addCustomerData.country_code}
                 onChange={(value) => {
                   _this.setAddCustomerData((prev) => ({
@@ -82,14 +82,14 @@ const AddCustomerModal = (_this) => {
               />
             </Input.Group>
           </div>
-          <div className="mb-2">
+          <div className="py-2">
             <Input.Group compact>
               <Button className="bg-primary text-white">
                 <FaPhoneAlt size={17} />
               </Button>
               <Input
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="Phone"
                 value={_this.addCustomerData.customer_mobile}

@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Modal, Input, Button } from 'antd';
 import { FaUserShield, FaUserLock, FaEye, FaEyeSlash, FaLock } from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai';
 
 const ChangePasswordModal = (_this) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -15,9 +14,9 @@ const ChangePasswordModal = (_this) => {
     <>
       <Modal
         centered
-        open={_this.changePasswordModalVisibility}
-        onOk={() => _this.setChangePasswordModalVisibility(false)}
-        onCancel={() => _this.setChangePasswordModalVisibility(false)}
+        open={_this.passwordModalVisibility}
+        onOk={() => _this.setPasswordModalVisibility(false)}
+        onCancel={() => _this.setPasswordModalVisibility(false)}
         width={500}
         footer={null}
       >
@@ -38,10 +37,10 @@ const ChangePasswordModal = (_this) => {
                 }}
                 placeholder="Old Password"
                 className="font-semibold h-11 text-base"
-                // value={_this.addCustomerData.customer_name}
-                // onChange={(e) => {
-                //   _this.setAddCustomerData((prev) => ({ ...prev, customer_name: e.target.value }));
-                // }}
+                value={_this.passwords.old_password}
+                onChange={(e) => {
+                  _this.setPasswords((prev) => ({ ...prev, old_password: e.target.value }));
+                }}
                 iconRender={(visible) =>
                   visible ? (
                     <FaEyeSlash onClick={togglePasswordVisibility} />
@@ -65,10 +64,10 @@ const ChangePasswordModal = (_this) => {
                 }}
                 placeholder="New Password"
                 className="font-semibold h-11 text-base"
-                // value={_this.addCustomerData.customer_name}
-                // onChange={(e) => {
-                //   _this.setAddCustomerData((prev) => ({ ...prev, customer_name: e.target.value }));
-                // }}
+                value={_this.passwords.password}
+                onChange={(e) => {
+                  _this.setPasswords((prev) => ({ ...prev, password: e.target.value }));
+                }}
                 iconRender={(visible) =>
                   visible ? (
                     <FaEyeSlash onClick={togglePasswordVisibility} />
@@ -92,10 +91,10 @@ const ChangePasswordModal = (_this) => {
                 }}
                 placeholder="Confirm New Password"
                 className="font-semibold h-11 text-base"
-                // value={_this.addCustomerData.customer_name}
-                // onChange={(e) => {
-                //   _this.setAddCustomerData((prev) => ({ ...prev, customer_name: e.target.value }));
-                // }}
+                value={_this.passwords.confirm_password}
+                onChange={(e) => {
+                  _this.setPasswords((prev) => ({ ...prev, confirm_password: e.target.value }));
+                }}
                 iconRender={(visible) =>
                   visible ? (
                     <FaEyeSlash onClick={togglePasswordVisibility} />
@@ -108,7 +107,10 @@ const ChangePasswordModal = (_this) => {
             </Input.Group>
           </div>
 
-          <Button className="w-[300px] bg-primary text-white h-12 font-bold text-lg tracking-wider">
+          <Button
+            onClick={() => _this.changePassword()}
+            className="w-[300px] bg-primary text-white h-12 font-bold text-lg tracking-wider"
+          >
             Save
           </Button>
         </div>
