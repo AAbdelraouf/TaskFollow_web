@@ -37,12 +37,12 @@ const SignUp = () => {
   });
 
   useEffect(() => {
-    businessData ? setEnterBusinessDetails(true) : setBusinessDetails(false);
+    businessData ? setEnterBusinessDetails(true) : setEnterBusinessDetails(false);
   }, []);
 
   const onSignUp = () => {
     if (formValue.password !== formValue.confirmPassword) {
-      return toast.error("Password doesn't match");
+      return toast.error("Password doesn't match.");
     }
     dispatch(loadingStart());
     API.auth
@@ -52,7 +52,7 @@ const SignUp = () => {
           if (response.otp) {
             setOtpReceived(true);
             dispatch(signup(response));
-            toast.success('Otp has been set to your Email account');
+            toast.success('OTP has been set to your e-mail account.');
           }
         }
       })
@@ -73,8 +73,7 @@ const SignUp = () => {
         if (response) {
           setOtpReceived(false);
           setEnterBusinessDetails(true);
-          dispatch(signup(response));
-          toast.success('Otp verified Successfully');
+          toast.success('OTP verified successfully.');
         }
       })
       .finally(() => {
@@ -91,7 +90,6 @@ const SignUp = () => {
           const temp = { ...userDetails, business_details: response };
           dispatch(login(temp));
           router.push('/dashboard');
-          setEnterBusinessDetails(false);
         }
       })
       .finally(() => {
