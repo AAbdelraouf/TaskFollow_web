@@ -20,23 +20,23 @@ const ChangePasswordModal = (_this) => {
         width={500}
         footer={null}
       >
-        <div className="flex flex-col justify-center items-center gap-3 py-2">
+        <div className="flex flex-col justify-center items-center gap-4 py-2">
           <div className="flex justify-center items-center gap-4 text-xl font-bold pb-4">
             <FaUserShield className="text-secondary" size={32} />
             Change Password
           </div>
 
-          <div className="">
+          <div>
             <Input.Group compact>
-              <Button className="text-white bg-primary h-11">
+              <Button className="text-white bg-primary h-9">
                 <FaUserLock size={22} />
               </Button>
               <Input.Password
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="Old Password"
-                className="font-semibold h-11 text-base"
+                className="font-semibold h-9 text-base"
                 value={_this.passwords.old_password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, old_password: e.target.value }));
@@ -53,17 +53,17 @@ const ChangePasswordModal = (_this) => {
             </Input.Group>
           </div>
 
-          <div className="">
+          <div>
             <Input.Group compact>
-              <Button className="text-white bg-primary h-11">
-                <FaLock size={22} />
+              <Button className="text-white bg-primary h-9">
+                <FaLock size={20} />
               </Button>
               <Input.Password
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="New Password"
-                className="font-semibold h-11 text-base"
+                className="font-semibold h-9 text-base"
                 value={_this.passwords.password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, password: e.target.value }));
@@ -80,17 +80,17 @@ const ChangePasswordModal = (_this) => {
             </Input.Group>
           </div>
 
-          <div className="">
+          <div>
             <Input.Group compact>
-              <Button className="text-white bg-primary h-11">
-                <FaLock size={22} />
+              <Button className="text-white bg-primary h-9">
+                <FaLock size={20} />
               </Button>
               <Input.Password
                 style={{
-                  width: '250px'
+                  width: '240px'
                 }}
                 placeholder="Confirm New Password"
-                className="font-semibold h-11 text-base"
+                className="font-semibold h-9 text-base"
                 value={_this.passwords.confirm_password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, confirm_password: e.target.value }));
@@ -109,7 +109,7 @@ const ChangePasswordModal = (_this) => {
 
           <Button
             onClick={() => _this.changePassword()}
-            className="w-[300px] bg-primary text-white h-12 font-bold text-lg tracking-wider"
+            className="w-[300px] bg-primary text-white h-10 font-bold text-lg tracking-wider"
           >
             Save
           </Button>
