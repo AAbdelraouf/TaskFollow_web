@@ -1,13 +1,12 @@
 import React from 'react';
 import { Modal, Input, Button, Select } from 'antd';
-import { FaPhoneAlt, FaGlobeAmericas } from 'react-icons/fa';
+import { FaPhoneAlt, FaGlobeAmericas, FaUserPlus } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 const AddCustomerModal = (_this) => {
   return (
     <>
       <Modal
-        title="Add New Customer"
         centered
         open={_this.addCustomerModalVisibility}
         onOk={() => _this.setAddCustomerModalVisibility(false)}
@@ -16,6 +15,10 @@ const AddCustomerModal = (_this) => {
         footer={null}
       >
         <div className="flex flex-col justify-center items-center pt-4">
+          <div className="flex justify-center items-center gap-2 text-xl font-semibold pb-4">
+            <FaUserPlus className="text-secondary" size={30} />
+            Add New Customer
+          </div>
           <div className="py-2">
             <Input.Group compact>
               <Button className="text-white bg-primary">
@@ -111,7 +114,7 @@ const AddCustomerModal = (_this) => {
             onClick={() => _this.onAddNewCustomer()}
             className="w-[300px] bg-primary text-white h-9 my-2"
           >
-            ADD
+            Add
           </Button>
         </div>
       </Modal>

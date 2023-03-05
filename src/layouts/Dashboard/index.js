@@ -23,7 +23,9 @@ const Index = () => {
   const [editCustomerData, setEditCustomerData] = useState({
     _id: '',
     name: '',
-    email: ''
+    email: '',
+    country_code: '',
+    phone: ''
   });
   const [deleteCustomerData, setDeleteCustomerData] = useState({
     customer_email: ''

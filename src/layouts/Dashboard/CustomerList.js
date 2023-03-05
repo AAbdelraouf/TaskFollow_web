@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Card, Modal } from 'antd';
+import { Button, Card } from 'antd';
 import { FaUserAlt, FaUserPlus } from 'react-icons/fa';
-import { MdDeleteForever, MdEditNote, MdCancel } from 'react-icons/md';
+import { MdDeleteForever, MdEditNote } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 const CustomerList = (_this) => {
@@ -57,10 +57,11 @@ const CustomerList = (_this) => {
                           ...prev,
                           _id: customer._id,
                           name: customer.name,
-                          email: customer.email
+                          email: customer.email,
+                          country_code: customer.mobile.split('-')[0],
+                          phone: customer.mobile.split('-')[1]
                         }));
                       }}
-
                       className=" w-[85px] flex justify-center items-center bg-grayMedium text-white shadow-md"
                     >
                       Edit
@@ -75,9 +76,7 @@ const CustomerList = (_this) => {
                           customer_email: customer.email
                         }));
                       }}
-
                       className="w-[85px] flex items-center justify-center bg-secondary text-white shadow-md"
-
                     >
                       Delete
                     </Button>
