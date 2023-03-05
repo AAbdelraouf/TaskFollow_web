@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Body from './Body';
 import API from '@/api';
 import { useDispatch } from 'react-redux';
@@ -9,14 +9,16 @@ import { toast } from 'react-toastify';
 import country_code from '@/utility/country.json';
 
 const SignUp = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
+  const { businessData } = router.query;
+  const dispatch = useDispatch();
+
   const userDetails = useSelector((state) => state.session.userSession);
   const [countryList, setCountryList] = useState(country_code.country_code);
   const [otpReceived, setOtpReceived] = useState(false);
   const [OTP, setOTP] = useState('');
   const [servicesInput, setServicesInput] = useState('');
-  const [enterBusinessDetails, setEnterBusinessSetails] = useState(false);
+  const [enterBusinessDetails, setEnterBusinessDetails] = useState(false);
   const [businessDetails, setBusinessDetails] = useState({
     country_code: '+1',
     business_phone: '',
@@ -33,6 +35,10 @@ const SignUp = () => {
     otp: '',
     account_type: 'business'
   });
+
+  useEffect(() => {
+    businessData ? setEnterBusinessDetails(true) : setBusinessDetails(false);
+  }, []);
 
   const onSignUp = () => {
     if (formValue.password !== formValue.confirmPassword) {
@@ -66,7 +72,7 @@ const SignUp = () => {
       .then((response) => {
         if (response) {
           setOtpReceived(false);
-          setEnterBusinessSetails(true);
+          setEnterBusinessDetails(true);
           dispatch(signup(response));
           toast.success('Otp verified Successfully');
         }
@@ -85,7 +91,7 @@ const SignUp = () => {
           const temp = { ...userDetails, business_details: response };
           dispatch(login(temp));
           router.push('/dashboard');
-          setEnterBusinessSetails(false);
+          setEnterBusinessDetails(false);
         }
       })
       .finally(() => {
@@ -94,6 +100,7 @@ const SignUp = () => {
   };
 
   const onServiceAdd = () => {
+    if (servicesInput === '') return toast.error('Cannot set blank services');
     const temp = [...businessDetails.business_services_offered, servicesInput];
 
     setBusinessDetails((prev) => ({
@@ -129,7 +136,8 @@ const SignUp = () => {
     servicesInput,
     setServicesInput,
     onServiceAdd,
-    onServiceDelete
+    onServiceDelete,
+    businessData
   };
 
   return (
