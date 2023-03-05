@@ -8,7 +8,7 @@ import { FiLogOut } from 'react-icons/fi';
 
 const BusinessDetails = (_this) => {
   return (
-    <div className="h-full bg-background">
+    <>
       <Card
         title={`Settings`}
         extra={
@@ -113,7 +113,7 @@ const BusinessDetails = (_this) => {
           </Card>
         </div>
       </Card>
-    </div>
+    </>
   );
 };
 

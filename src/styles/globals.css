@@ -67,10 +67,7 @@ p {
   transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   overflow-x: hidden;
 }
-.menu_collapsed {
-  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-  width: 78px !important;
-}
+
 .custom_button {
   transition: all 0.3s;
 }

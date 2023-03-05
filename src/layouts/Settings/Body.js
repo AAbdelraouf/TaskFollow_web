@@ -6,8 +6,9 @@ import DeleteAccountModal from './DeleteAccountModal';
 const Body = (_this) => {
   return (
     <>
-      <ChangePasswordModal {..._this} /> <BusinessDetails {..._this} />{' '}
+      <ChangePasswordModal {..._this} />
       <DeleteAccountModal {..._this} />
+      <BusinessDetails {..._this} />
     </>
   );
 };

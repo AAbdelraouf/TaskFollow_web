@@ -18,11 +18,11 @@ const CustomerList = (_this) => {
             Add New Customer
           </div>
         }
-        className="bg-background text-gray-500 tracking-wider h-full flex flex-col justify-start shadow-md w-full"
+        className="bg-background text-gray-500 tracking-wider flex flex-col justify-start w-full"
       >
         {_this.getCustomerDetails &&
           _this.getCustomerDetails.map((customer) => (
-            <div className="flex justify-center items-center" key={customer._id}>
+            <div className="flex flex-col justify-center items-center" key={customer._id}>
               <Card className="bg-white shadow-md hover:shadow-lg w-full min-h-36 mb-4">
                 <div className="flex justify-between items-center">
                   <div className="flex flex-col gap-1">
