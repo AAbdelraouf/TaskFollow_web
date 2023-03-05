@@ -39,7 +39,7 @@ const auth = {
         params: {}
       });
     } catch (error) {
-      response = e;
+      response = error;
     }
     return handleResponse(response);
   }
