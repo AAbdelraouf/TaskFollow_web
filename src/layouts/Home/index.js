@@ -25,7 +25,7 @@ const Home = () => {
             return toast.error('Only Business Account is allowed to Login');
           }
           dispatch(login(response));
-          if (userSession.business_details === '') {
+          if (userSession?.business_details === '') {
             return router.push({
               pathname: '/sign-up',
               query: {
