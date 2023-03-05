@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Body from './Body';
 import API from '@/api';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { loadingStart, loadingStop, login, signup } from '@/redux/action';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
@@ -10,6 +11,7 @@ import country_code from '@/utility/country.json';
 const SignUp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const userDetails = useSelector((state) => state.session.userSession);
   const [countryList, setCountryList] = useState(country_code.country_code);
   const [otpReceived, setOtpReceived] = useState(false);
   const [OTP, setOTP] = useState('');
@@ -80,9 +82,9 @@ const SignUp = () => {
       .AddBusinessDetails(businessDetails)
       .then((response) => {
         if (response) {
-          dispatch(login(response));
-          toast.success('Business Generated');
-          router.push('/');
+          const temp = { ...userDetails, business_details: response };
+          dispatch(login(temp));
+          router.push('/dashboard');
           setEnterBusinessSetails(false);
         }
       })
