@@ -58,7 +58,6 @@ const BusinessDetails = (_this) => {
                     <button
                       className="m-2 bg-primary text-white text-center px-3 py-1 rounded-md font-semibold min-w-[80px] cursor-default"
                       key={index}
-                      ghost="true"
                     >
                       {category}
                     </button>
