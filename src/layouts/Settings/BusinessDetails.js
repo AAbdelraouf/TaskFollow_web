@@ -12,21 +12,24 @@ const BusinessDetails = (_this) => {
       <Card
         title={`Settings`}
         extra={
-          <div className="w-52 md:w-72 p-4 py-1.5 sm:py-4 px-3 md:px-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-lg font-bold rounded-lg custom_button">
+          <div
+            className="w-52 md:w-72 p-4 py-1.5 sm:py-4 px-3 md:px-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-lg font-bold rounded-lg custom_button"
+            onClick={() => _this.setEditProfileModalVisibility(true)}
+          >
             Edit Profile <BiChevronRight size={30} />
           </div>
         }
         className="bg-background text-gray-500 tracking-wider flex flex-col justify-start w-full py-1.5"
       >
         <div className="min-h-3/5 w-full py-0 flex flex-col md:flex-row justify-evenly gap-4 md:gap-7 items-start">
-          <Card className="md:w-3/5 h-full shadow-lg rounded-xl flex flex-col">
+          <Card className="w-full md:w-3/5 h-full shadow-lg rounded-xl flex flex-col">
             <Title
               level={5}
               className="flex justify-start items-start gap-0 text-black h-auto w-full"
             >
               <span className="w-[37%] sm:w-[24%] md:w-[33%] lg:w-[22%]">Phone :</span>{' '}
               <Typography className="font-semibold text-slate-600 text-[15px] flex-grow w-[63%] sm:w-[76%] md:w-[67%] lg:w-[78%] align-text-bottom">
-                {_this.businessDetails ? _this.businessDetails.phone : ''}
+                {_this.displayBusinessPhone}
               </Typography>
             </Title>
             <Title
@@ -37,7 +40,7 @@ const BusinessDetails = (_this) => {
                 Address :
               </span>{' '}
               <Typography className="font-semibold text-slate-600 text-[15px] flex-grow w-[63%] sm:w-[76%] md:w-[67%] lg:w-[78%] align-text-bottom">
-                {_this.businessDetails ? _this.businessDetails.address : ''}
+                {_this.businessDetails ? _this.businessDetails.business_address : ''}
               </Typography>
             </Title>
             <Title
@@ -48,13 +51,13 @@ const BusinessDetails = (_this) => {
                 Description :
               </span>{' '}
               <Typography className="font-semibold text-slate-600 text-[15px] flex-grow w-[63%] sm:w-[76%] md:w-[67%] lg:w-[78%] align-text-bottom">
-                {_this.businessDetails ? _this.businessDetails.description : ''}
+                {_this.businessDetails ? _this.businessDetails.business_description : ''}
               </Typography>
             </Title>
             <Title level={5}>Services Offered : </Title>
             <div>
               {_this.businessDetails
-                ? _this.businessDetails.services_offered.map((category, index) => (
+                ? _this.businessDetails.business_services_offered.map((category, index) => (
                     <button
                       className="m-2 bg-primary text-white text-center px-3 py-1 rounded-md font-semibold min-w-[80px] cursor-default"
                       key={index}
@@ -65,7 +68,10 @@ const BusinessDetails = (_this) => {
                 : ''}
             </div>
             <span className="flex justify-end h-4 w-full">
-              <MdOutlineEdit className="text-secondary text-2xl cursor-pointer" />
+              <MdOutlineEdit
+                className="text-secondary text-2xl cursor-pointer"
+                onClick={() => _this.setEditBusinessDetailsModalVisibility(true)}
+              />
             </span>
           </Card>
 
