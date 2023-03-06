@@ -9,7 +9,19 @@ module.exports = {
         background: '#EDF6FF',
         grayLight: '#DADFE4',
         grayMedium: '#A3A3A4',
-        grayDark: '#535550'
+        grayDark: '#535550',
+        text_primary: '#424242',
+        pending: '#9AB0FF',
+        completed: '#5BF08E',
+        progressBar: '#1C8FF9',
+        progressBarBackground: '#F1F1F2',
+        err: 'tomato',
+        hold: '#FAD02C',
+        priorityBackground: '#FCD5D9',
+        shadow: '#171717',
+        backIcon: '#EF9A9A',
+        red: '#D7032A',
+        radiantBlue: '#2B5DF5'
       },
       screens: {
         xs: { max: '515px' }
