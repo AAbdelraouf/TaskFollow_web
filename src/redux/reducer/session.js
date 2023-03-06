@@ -22,7 +22,6 @@ const sessionData = createSlice({
     logout: (state) => {
       state.userSession = null;
       localStorage.removeItem('userSession');
-      localStorage.removeItem('cart');
       localStorage.clear();
     },
     signup: (state, action) => {
@@ -34,6 +33,7 @@ const sessionData = createSlice({
     },
     loadSessionFromLocal: (state, action) => {
       state.userSession = action.payload;
+      localStorage.setItem('userSession', JSON.stringify(state.userSession));
     }
   }
 });
