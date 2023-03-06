@@ -79,6 +79,22 @@ const business = {
     }
     return handleResponse(response);
   },
+
+  GetTasks: async (data) => {
+    console.log(data);
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post(`v1/business/get-tasks`, data, {
+        params: {},
+        headers: { Authorization: 'Bearer ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
+  },
+
   changePassword: async (data) => {
     const token = await getToken();
     let response = null;
