@@ -11,20 +11,11 @@ const Body = () => {
     <>
       <Card
         title={`Tasks(2)`}
-        // extra={
-        //   <div
-        //     // onClick={() => _this.setAddCustomerModalVisibility(true)}
-        //     className="w-52 md:w-72 p-4 py-1.5 sm:py-4 px-3 md:px-4 mt-2 flex justify-center cursor-pointer items-center bg-buttonBgImage bg-cover shadow-md bg-center text-secondary text-sm font-bold rounded-lg custom_button"
-        //   >
-        //     <FaUserPlus size={30} className="mr-2" />
-        //     Add Tasks
-        //   </div>
-        // }
-        className="bg-background text-gray-500 tracking-wider flex flex-col justify-center w-full"
+        className="bg-background text-gray-500 tracking-wider flex flex-col justify-start w-full"
       >
-        <div className="flex flex-wrap flex-col sm:flex-row justify-between gap-8 items-center">
+        <div className="flex flex-wrap flex-col sm:flex-row justify-around lg:gap-8 gap-3 items-center">
           <Card
-            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full sm:w-3/12"
+            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-3/12"
             bordered={false}
             actions={[
               <MdEditNote
@@ -96,7 +87,7 @@ const Body = () => {
           {/* ---------------------------------------Another Card----------------------------------------------- */}
 
           <Card
-            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full sm:w-3/12"
+            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-3/12"
             bordered={false}
             actions={[
               <MdEditNote
@@ -167,7 +158,7 @@ const Body = () => {
 
           {/* ---------------------------------------------------------------------------Another Modal--------------------------------------------- */}
           <Card
-            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full sm:w-3/12"
+            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-3/12"
             bordered={false}
             actions={[
               <MdEditNote
@@ -238,7 +229,7 @@ const Body = () => {
 
           {/* -------------------------------------------------------------------------Another Card--------------------------------------------- */}
           <Card
-            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full sm:w-3/12"
+            className="bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-3/12"
             bordered={false}
             actions={[
               <MdEditNote

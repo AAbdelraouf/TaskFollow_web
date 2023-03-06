@@ -108,6 +108,17 @@ const Index = () => {
       .finally(() => dispatch(loadingStop()));
   };
 
+  const onGetTasks = (data) => {
+    console.log(data);
+    dispatch(loadingStart());
+    API.business
+      .GetTasks({ customer_email: data })
+      .then((response) => {
+        console.log(response);
+      })
+      .finally(() => dispatch(loadingStop()));
+  };
+
   const _this = {
     addCustomerModalVisibility,
     setAddCustomerModalVisibility,
@@ -125,7 +136,8 @@ const Index = () => {
     deleteCustomerModalVisibility,
     setDeleteCustomerModalVisibility,
     deleteCustomerData,
-    setDeleteCustomerData
+    setDeleteCustomerData,
+    onGetTasks
   };
   return (
     <Container>

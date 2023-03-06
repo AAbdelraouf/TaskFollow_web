@@ -16,6 +16,7 @@ const items = [
   {
     key: '/dashboard',
     icon: <PieChartOutlined className="py-2" />,
+    cildren: '',
     label: 'Dashboard',
     type: ''
   },

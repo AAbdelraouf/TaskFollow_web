@@ -24,7 +24,10 @@ const CustomerList = (_this) => {
         {_this.getCustomerDetails &&
           _this.getCustomerDetails.map((customer) => (
             <Link href={`/dashboard/task-list`} key={customer._id}>
-              <div className="flex flex-col justify-center items-center">
+              <div
+                className="flex flex-col justify-center items-center"
+                onClick={() => _this.onGetTasks(customer.email)}
+              >
                 <Card className="bg-white shadow-md hover:shadow-lg w-full min-h-36 mb-4">
                   <div className="flex justify-between items-center">
                     <div className="flex flex-col gap-1">
