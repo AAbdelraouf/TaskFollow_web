@@ -3,11 +3,12 @@ import Body from './Body';
 import API from '@/api';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadingStart, loadingStop, login } from '@/redux/action';
 
 const Home = () => {
   const router = useRouter();
+  const userSession = useSelector((state) => state.session.userSession);
   const dispatch = useDispatch();
   const [formValue, setFormValue] = useState({
     email: '',
@@ -24,6 +25,14 @@ const Home = () => {
             return toast.error('Only Business Account is allowed to Login');
           }
           dispatch(login(response));
+          if (userSession?.business_details === '') {
+            return router.push({
+              pathname: '/sign-up',
+              query: {
+                businessData: true
+              }
+            });
+          }
           router.push('/dashboard');
           toast.success('Logged in Successfully');
         }

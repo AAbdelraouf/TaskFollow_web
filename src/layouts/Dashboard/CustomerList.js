@@ -3,6 +3,7 @@ import { Button, Card } from 'antd';
 import { FaUserAlt, FaUserPlus } from 'react-icons/fa';
 import { MdDeleteForever, MdEditNote } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 const CustomerList = (_this) => {
   return (
@@ -22,68 +23,71 @@ const CustomerList = (_this) => {
       >
         {_this.getCustomerDetails &&
           _this.getCustomerDetails.map((customer) => (
-            <div className="flex flex-col justify-center items-center" key={customer._id}>
-              <Card className="bg-white shadow-md hover:shadow-lg w-full min-h-36 mb-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex justify-start items-center pb-2 gap-1">
-                      <div className="w-8 h-8 rounded-full bg-grayLight flex justify-center items-center mr-1">
-                        <FaUserAlt size={17} className="text-primary" />
+            <Link href={`/dashboard/task-list`} key={customer._id}>
+              <div className="flex flex-col justify-center items-center">
+                <Card className="bg-white shadow-md hover:shadow-lg w-full min-h-36 mb-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-start items-center pb-2 gap-1">
+                        <div className="w-8 h-8 rounded-full bg-grayLight flex justify-center items-center mr-1">
+                          <FaUserAlt size={17} className="text-primary" />
+                        </div>
+                        <h1 className="font-semibold text-xl ml-1 mt-0">{customer.name}</h1>
                       </div>
-                      <h1 className="font-semibold text-xl ml-1 mt-0">{customer.name}</h1>
+                      <div className="font-semibold text-md max-w-[180px] sm:max-w-full">
+                        Email:{' '}
+                        <span className="font-normal text-md break-all">{customer.email}</span>
+                      </div>
+                      <div className="font-semibold text-md">
+                        Phone: <span className="font-normal text-md">{customer.mobile}</span>
+                      </div>
+                      <div className="font-semibold text-md">
+                        Tasks: <span className="font-normal text-md">{customer.task_count}</span>
+                      </div>
                     </div>
-                    <div className="font-semibold text-md max-w-[180px] sm:max-w-full">
-                      Email: <span className="font-normal text-md break-all">{customer.email}</span>
-                    </div>
-                    <div className="font-semibold text-md">
-                      Phone: <span className="font-normal text-md">{customer.mobile}</span>
-                    </div>
-                    <div className="font-semibold text-md">
-                      Tasks: <span className="font-normal text-md">{customer.task_count}</span>
-                    </div>
-                  </div>
 
-                  <div className="flex flex-col gap-3 sm:flex-row items-end justify-end h-full self-end">
-                    <Button
-                      icon={<MdEditNote size={25} />}
-                      onClick={() => {
-                        if (!customer.invited_by) {
-                          return toast.error(
-                            'Registered users are not editable. Please ask the user to login and edit info.'
-                          );
-                        }
-                        _this.setEditCustomerModalVisibility(true);
-                        _this.setEditCustomerData((prev) => ({
-                          ...prev,
-                          _id: customer._id,
-                          name: customer.name,
-                          email: customer.email,
-                          country_code: customer.mobile.split('-')[0],
-                          phone: customer.mobile.split('-')[1]
-                        }));
-                      }}
-                      className=" w-[85px] flex justify-center items-center bg-grayMedium text-white shadow-md"
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      icon={<MdDeleteForever size={20} />}
-                      onClick={() => {
-                        _this.setDeleteCustomerModalVisibility(true);
-                        _this.setDeleteCustomerData((prev) => ({
-                          ...prev,
-                          customer_name: customer.name,
-                          customer_email: customer.email
-                        }));
-                      }}
-                      className="w-[85px] flex items-center justify-center bg-secondary text-white shadow-md"
-                    >
-                      Delete
-                    </Button>
+                    <div className="flex flex-col gap-3 sm:flex-row items-end justify-end h-full self-end">
+                      <Button
+                        icon={<MdEditNote size={25} />}
+                        onClick={() => {
+                          if (!customer.invited_by) {
+                            return toast.error(
+                              'Registered users are not editable. Please ask the user to login and edit info.'
+                            );
+                          }
+                          _this.setEditCustomerModalVisibility(true);
+                          _this.setEditCustomerData((prev) => ({
+                            ...prev,
+                            _id: customer._id,
+                            name: customer.name,
+                            email: customer.email,
+                            country_code: customer.mobile.split('-')[0],
+                            phone: customer.mobile.split('-')[1]
+                          }));
+                        }}
+                        className=" w-[85px] flex justify-center items-center bg-grayMedium text-white shadow-md"
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        icon={<MdDeleteForever size={20} />}
+                        onClick={() => {
+                          _this.setDeleteCustomerModalVisibility(true);
+                          _this.setDeleteCustomerData((prev) => ({
+                            ...prev,
+                            customer_name: customer.name,
+                            customer_email: customer.email
+                          }));
+                        }}
+                        className="w-[85px] flex items-center justify-center bg-secondary text-white shadow-md"
+                      >
+                        Delete
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </div>
+                </Card>
+              </div>
+            </Link>
           ))}
       </Card>
     </>

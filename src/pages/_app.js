@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Loader } from '@/components';
-import { loadSessionFromLocal, logout } from '@/redux/action';
+import { loadSessionFromLocal, logout, loadingStart, loadingStop } from '@/redux/action';
 import store from '@/redux/store';
 import Config from '@/config';
+import API from '@/api';
 
 import '@/styles/globals.css';
 //import 'antd/dist/reset.css';
@@ -21,7 +22,7 @@ export default function App({ Component, pageProps }) {
 }
 
 const WrappingContainer = ({ Component, pageProps }) => {
-  const { isLoading, session } = useSelector((state) => state.session);
+  const { isLoading, userSession } = useSelector((state) => state.session);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -36,11 +37,30 @@ const WrappingContainer = ({ Component, pageProps }) => {
 
   useEffect(() => {
     // This use Effect is only used to load localstorage data into redux on page reload.
+
     dispatch(
       loadSessionFromLocal(
         localStorage.getItem('userSession') ? JSON.parse(localStorage.getItem('userSession')) : null
       )
     );
+
+    const userData = JSON.parse(localStorage.getItem('userSession'));
+    const data = {
+      email: userData.email,
+      refresh_token: userData.active_session_refresh_token
+    };
+    dispatch(loadingStart());
+    API.auth
+      .GetAccessToken(data)
+      .then((response) => {
+        if (response) {
+          const temp = { ...userData, access_token: response.access_token };
+          dispatch(loadSessionFromLocal(temp));
+        }
+      })
+      .finally(() => {
+        dispatch(loadingStop());
+      });
   }, []);
 
   return (

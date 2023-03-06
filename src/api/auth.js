@@ -44,6 +44,17 @@ const auth = {
       response = e;
     }
     return handleResponse(response);
+  },
+  GetAccessToken: async (data) => {
+    let response = null;
+    try {
+      response = await api.get(`v1/auth//get-access-token/${data.email}/${data.refresh_token}`, {
+        params: {}
+      });
+    } catch (error) {
+      response = error;
+    }
+    return handleResponse(response);
   }
 };
 
