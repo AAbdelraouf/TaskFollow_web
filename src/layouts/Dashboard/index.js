@@ -6,9 +6,11 @@ import { loadingStart, loadingStop } from '@/redux/action';
 import API from '@/api';
 import country_code from '@/utility/country.json';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const Index = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [countryList, setCountryList] = useState(country_code.country_code);
   const [getCustomerDetails, setGetCustomerDetails] = useState([]);
   const [addCustomerModalVisibility, setAddCustomerModalVisibility] = useState(false);
@@ -108,15 +110,13 @@ const Index = () => {
       .finally(() => dispatch(loadingStop()));
   };
 
-  const onGetTasks = (data) => {
-    console.log(data);
-    dispatch(loadingStart());
-    API.business
-      .GetTasks({ customer_email: data })
-      .then((response) => {
-        console.log(response);
-      })
-      .finally(() => dispatch(loadingStop()));
+  const onCustomerCardClick = (email) => {
+    router.push({
+      pathname: `/dashboard/business/task/${email}`,
+      query: {
+        customer_email: email
+      }
+    });
   };
 
   const _this = {
@@ -137,7 +137,7 @@ const Index = () => {
     setDeleteCustomerModalVisibility,
     deleteCustomerData,
     setDeleteCustomerData,
-    onGetTasks
+    onCustomerCardClick
   };
   return (
     <Container>

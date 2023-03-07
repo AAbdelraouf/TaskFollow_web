@@ -81,7 +81,6 @@ const business = {
   },
 
   GetTasks: async (data) => {
-    console.log(data);
     const token = await getToken();
     let response = null;
     try {

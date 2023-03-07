@@ -33,7 +33,7 @@ const Home = () => {
               }
             });
           }
-          router.push('/dashboard');
+          router.push('/dashboard/business');
           toast.success('Logged in Successfully');
         }
       })

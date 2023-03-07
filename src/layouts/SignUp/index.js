@@ -89,7 +89,7 @@ const SignUp = () => {
         if (response) {
           const temp = { ...userDetails, business_details: response };
           dispatch(login(temp));
-          router.push('/dashboard');
+          router.push('/dashboard/business');
         }
       })
       .finally(() => {
