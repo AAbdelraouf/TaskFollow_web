@@ -27,6 +27,7 @@ module.exports = {
         shadow: '#171717',
         backIcon: '#EF9A9A',
         red: '#D7032A',
+        lightRed: '#fb7185',
         radiantBlue: '#2B5DF5'
       },
       screens: {
