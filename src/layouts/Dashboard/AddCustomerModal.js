@@ -3,6 +3,7 @@ import { Modal, Input, Button, Select } from 'antd';
 import { FaPhoneAlt, FaGlobeAmericas, FaUserPlus } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
+
 const AddCustomerModal = (_this) => {
   return (
     <>

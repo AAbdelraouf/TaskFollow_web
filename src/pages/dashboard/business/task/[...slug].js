@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import TaskList from '@/layouts/Dashboard/TaskList';
+import TaskList from '@/layouts/TaskList';
 
 const Page = () => {
   return (

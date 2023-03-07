@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Loader } from '@/components';
-import { loadSessionFromLocal, logout, loadingStart, loadingStop } from '@/redux/action';
+import { loadSessionFromLocal, logout, loadingStart, loadingStop, login } from '@/redux/action';
 import store from '@/redux/store';
 import Config from '@/config';
 import API from '@/api';
@@ -55,7 +55,7 @@ const WrappingContainer = ({ Component, pageProps }) => {
       .then((response) => {
         if (response) {
           const temp = { ...userData, access_token: response.access_token };
-          dispatch(loadSessionFromLocal(temp));
+          dispatch(login(temp));
         }
       })
       .finally(() => {
