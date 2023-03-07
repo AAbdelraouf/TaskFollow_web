@@ -46,8 +46,8 @@ const WrappingContainer = ({ Component, pageProps }) => {
 
     const userData = JSON.parse(localStorage.getItem('userSession'));
     const data = {
-      email: userData.email,
-      refresh_token: userData.active_session_refresh_token
+      email: userData?.email,
+      refresh_token: userData?.active_session_refresh_token
     };
     dispatch(loadingStart());
     API.auth

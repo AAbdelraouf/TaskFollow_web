@@ -3,7 +3,6 @@ import { Button, Card } from 'antd';
 import { FaPlusCircle } from 'react-icons/fa';
 import { FiPlusCircle } from 'react-icons/fi';
 import { MdDeleteForever, MdEditNote } from 'react-icons/md';
-import { toast } from 'react-toastify';
 import styles from '@/styles/Task.module.css';
 
 const TaskList = (_this) => {
@@ -35,6 +34,14 @@ const TaskList = (_this) => {
                     className="w-full p-0 flex justify-center items-center text-grayDark "
                   />,
                   <MdDeleteForever
+                    onClick={() => {
+                      _this.setDeleteTaskModalVisibility(true);
+                      _this.setDeleteTaskData((prev) => ({
+                        ...prev,
+                        title: task.title,
+                        id: task._id
+                      }));
+                    }}
                     size={25}
                     key="delete"
                     className="w-full p-0 flex justify-center items-center text-secondary"

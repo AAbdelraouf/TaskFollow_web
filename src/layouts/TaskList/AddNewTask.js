@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal, Input, Button, Select } from 'antd';
-import { FaPhoneAlt, FaGlobeAmericas, FaUserPlus, FaUsers, FaCalendarAlt } from 'react-icons/fa';
-import { HiStatusOnline } from 'react-icons/hi';
+import { Modal, Input, Button, Select, DatePicker } from 'antd';
+import { FaUserPlus, FaUsers } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
 import { TbCalendarTime } from 'react-icons/tb';
 import {
+  MdRemoveCircle,
   MdLowPriority,
   MdOutlineAddTask,
   MdTitle,
@@ -40,8 +40,13 @@ const AddNewTask = (_this) => {
                   width: '240px'
                 }}
                 placeholder="Title"
-                value={null}
-                onChange={null}
+                value={_this.addNewTaskData.title}
+                onChange={(e) =>
+                  _this.setAddNewTaskData((prev) => ({
+                    ...prev,
+                    title: e.target.value
+                  }))
+                }
               />
             </Input.Group>
           </div>
@@ -54,22 +59,30 @@ const AddNewTask = (_this) => {
                 <MdOutlinePlaylistAddCheck size={17} />
               </Button>
               <Select
-                showSearch
+                placeholder="Select Status"
                 className="w-[240px] h-9"
-                value={null}
-                //   onChange={(value) => {
-                //     _this.setAddCustomerData((prev) => ({
-                //       ...prev,
-                //       country_code: value
-                //     }));
-                //   }}
-                filterOption={(input, option) => {
-                  return (option?.label?.key ?? '').toLowerCase().includes(input.toLowerCase());
+                onChange={(value) => {
+                  _this.setAddNewTaskData((prev) => ({
+                    ...prev,
+                    status: _this.makeCamelCaseWords(value)
+                  }));
                 }}
                 options={_this.statusList.map((item, index) => ({
                   label: (
                     <div className="flex flex-row justify-start items-center" key={index}>
-                      <div className="ml-2">{item}</div>
+                      <div
+                        className={` ml-2${
+                          item == 'Assigned'
+                            ? ` text-radiantBlue `
+                            : item == 'In Progress'
+                            ? ` text-pending`
+                            : item == 'On Hold'
+                            ? ` text-grayMedium`
+                            : ` text-completed`
+                        }`}
+                      >
+                        {item}
+                      </div>
                     </div>
                   ),
                   value: item
@@ -87,22 +100,31 @@ const AddNewTask = (_this) => {
                 <MdLowPriority size={17} />
               </Button>
               <Select
-                showSearch
+                placeholder="Select Priority"
                 className="w-[240px] h-9"
-                value={null}
-                //   onChange={(value) => {
-                //     _this.setAddCustomerData((prev) => ({
-                //       ...prev,
-                //       country_code: value
-                //     }));
-                //   }}
+                onChange={(value) => {
+                  _this.setAddNewTaskData((prev) => ({
+                    ...prev,
+                    priority: _this.makeCamelCaseWords(value)
+                  }));
+                }}
                 filterOption={(input, option) => {
                   return (option?.label?.key ?? '').toLowerCase().includes(input.toLowerCase());
                 }}
                 options={_this.priorityList.map((item, index) => ({
                   label: (
                     <div className="flex flex-row justify-start items-center" key={index}>
-                      <div className="ml-2">{item}</div>
+                      <div
+                        className={` ml-2${
+                          item == 'Low'
+                            ? ` text-txtLow `
+                            : item == 'Medium'
+                            ? ` text-txtMedium`
+                            : ` text-txtHigh`
+                        }`}
+                      >
+                        {item}
+                      </div>
                     </div>
                   ),
                   value: item
@@ -118,13 +140,22 @@ const AddNewTask = (_this) => {
               <Button className="text-white bg-primary">
                 <FiCalendar size={17} />
               </Button>
-              <Input
+              <DatePicker
                 style={{
                   width: '240px'
                 }}
-                placeholder="Title"
-                value={null}
-                onChange={null}
+                placeholder="Expected Start Date"
+                onChange={(value) => {
+                  const year = value.$y;
+                  let month = value.$M + 1;
+                  month = month.toString().padStart(2, '0');
+                  let day = value.$D;
+                  day = day.toString().padStart(2, '0');
+                  _this.setAddNewTaskData((prev) => ({
+                    ...prev,
+                    expected_start_date: `${year}-${month}-${day}`
+                  }));
+                }}
               />
             </Input.Group>
           </div>
@@ -136,13 +167,22 @@ const AddNewTask = (_this) => {
               <Button className="text-white bg-primary">
                 <TbCalendarTime size={17} />
               </Button>
-              <Input
+              <DatePicker
                 style={{
                   width: '240px'
                 }}
-                placeholder="Title"
-                value={null}
-                onChange={null}
+                placeholder="Due Date"
+                onChange={(value) => {
+                  const year = value.$y;
+                  let month = value.$M + 1;
+                  month = month.toString().padStart(2, '0');
+                  let day = value.$D;
+                  day = day.toString().padStart(2, '0');
+                  _this.setAddNewTaskData((prev) => ({
+                    ...prev,
+                    due_date: `${year}-${month}-${day}`
+                  }));
+                }}
               />
             </Input.Group>
           </div>
@@ -156,8 +196,13 @@ const AddNewTask = (_this) => {
                 width: '290px'
               }}
               placeholder="Enter Description"
-              value={null}
-              onChange={null}
+              value={_this.addNewTaskData.description}
+              onChange={(e) => {
+                _this.setAddNewTaskData((prev) => ({
+                  ...prev,
+                  description: e.target.value
+                }));
+              }}
             />
           </div>
           <div className="py-2">
@@ -170,20 +215,44 @@ const AddNewTask = (_this) => {
               </Button>
               <Input
                 style={{
-                  width: '240px'
+                  width: '210px'
                 }}
                 placeholder="Add Watcher"
-                value={null}
-                onChange={null}
+                value={_this.watchersInput}
+                onChange={(e) => _this.setWatchersInput(e.target.value)}
               />
+              <FaUserPlus size={30} className="text-secondary ml-2" onClick={_this.onAddWatcher} />
             </Input.Group>
           </div>
-
-          <p className="text-xs font-thin italic my-2">
-            <span className="text-high">** </span>Participants added will get notified of progress
-            made on this task.
-          </p>
-          <Button onClick={null} className="w-[300px] bg-primary text-white h-9 my-2">
+          {_this.addNewTaskData?.watchers?.map((item, index) => (
+            <div
+              className={`flex justify-between items-center w-[290px] rounded-full px-2 mb-2 my-1 h-7 ${
+                _this.customer_email === item ? 'bg-secondary' : 'bg-lightRed'
+              }`}
+              key={index}
+            >
+              <span className="text-xs text-white font-normal">
+                {item} {_this.customer_email === item ? '(primary)' : ''}
+              </span>
+              <MdRemoveCircle
+                size={20}
+                className="text-txtHigh hover:text-red-500 cursor-pointer"
+                onClick={() => {
+                  _this.onRemoveWatcher(index);
+                }}
+              />
+            </div>
+          ))}
+          <div className="mt-6">
+            <p className="text-xs font-thin italic">
+              <span className="text-high">** </span>Participants added will get notified of progress
+              made on this task.
+            </p>
+          </div>
+          <Button
+            onClick={() => _this.onAddNewTaskClick()}
+            className="w-[300px] bg-primary text-white h-9 my-2"
+          >
             Add
           </Button>
         </div>
