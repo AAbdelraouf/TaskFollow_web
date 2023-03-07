@@ -40,6 +40,7 @@ const Settings = () => {
   });
   const [servicesInput, setServicesInput] = useState('');
   const [displayBusinessPhone, setDisplayBusinessPhone] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   useEffect(() => {
     if (userSession) {
@@ -64,6 +65,10 @@ const Settings = () => {
       }));
     }
   }, [userSession]);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
 
   const onAddService = () => {
     const value = [...businessDetails.business_services_offered, servicesInput];
@@ -239,7 +244,8 @@ const Settings = () => {
     onEditProfileSubmit,
     profileDetails,
     setProfileDetails,
-    displayBusinessPhone
+    displayBusinessPhone,
+    togglePasswordVisibility
   };
 
   return (

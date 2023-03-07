@@ -1,15 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
 import { Modal, Input, Button } from 'antd';
 import { FaUserShield, FaUserLock, FaEye, FaEyeSlash, FaLock } from 'react-icons/fa';
 
 const ChangePasswordModal = (_this) => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible((prev) => !prev);
-  };
-
   return (
     <>
       <Modal
@@ -32,20 +25,17 @@ const ChangePasswordModal = (_this) => {
                 <FaUserLock size={22} />
               </Button>
               <Input.Password
-                style={{
-                  width: '240px'
-                }}
                 placeholder="Old Password"
-                className="font-semibold h-9 text-base"
+                className="font-semibold h-9 text-base w-[240px]"
                 value={_this.passwords.old_password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, old_password: e.target.value }));
                 }}
                 iconRender={(visible) =>
                   visible ? (
-                    <FaEyeSlash onClick={togglePasswordVisibility} />
+                    <FaEyeSlash onClick={() => _this.togglePasswordVisibility} />
                   ) : (
-                    <FaEye onClick={togglePasswordVisibility} />
+                    <FaEye onClick={() => _this.togglePasswordVisibility} />
                   )
                 }
                 visibilityToggle
@@ -59,20 +49,17 @@ const ChangePasswordModal = (_this) => {
                 <FaLock size={20} />
               </Button>
               <Input.Password
-                style={{
-                  width: '240px'
-                }}
                 placeholder="New Password"
-                className="font-semibold h-9 text-base"
+                className="font-semibold h-9 text-base w-[240px]"
                 value={_this.passwords.password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, password: e.target.value }));
                 }}
                 iconRender={(visible) =>
                   visible ? (
-                    <FaEyeSlash onClick={togglePasswordVisibility} />
+                    <FaEyeSlash onClick={() => _this.togglePasswordVisibility} />
                   ) : (
-                    <FaEye onClick={togglePasswordVisibility} />
+                    <FaEye onClick={() => _this.togglePasswordVisibility} />
                   )
                 }
                 visibilityToggle
@@ -86,20 +73,17 @@ const ChangePasswordModal = (_this) => {
                 <FaLock size={20} />
               </Button>
               <Input.Password
-                style={{
-                  width: '240px'
-                }}
                 placeholder="Confirm New Password"
-                className="font-semibold h-9 text-base"
+                className="font-semibold h-9 text-base w-[240px]"
                 value={_this.passwords.confirm_password}
                 onChange={(e) => {
                   _this.setPasswords((prev) => ({ ...prev, confirm_password: e.target.value }));
                 }}
                 iconRender={(visible) =>
                   visible ? (
-                    <FaEyeSlash onClick={togglePasswordVisibility} />
+                    <FaEyeSlash onClick={() => _this.togglePasswordVisibility} />
                   ) : (
-                    <FaEye onClick={togglePasswordVisibility} />
+                    <FaEye onClick={() => _this.togglePasswordVisibility} />
                   )
                 }
                 visibilityToggle

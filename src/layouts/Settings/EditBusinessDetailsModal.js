@@ -6,6 +6,7 @@ import { MdLocationOn } from 'react-icons/md';
 import { BsPlusSquareFill } from 'react-icons/bs';
 import { HiMinus } from 'react-icons/hi';
 import { RxCross2 } from 'react-icons/rx';
+import { MdBusiness } from 'react-icons/md';
 
 const EditBusinessDetailsModal = (_this) => {
   return (
@@ -13,19 +14,18 @@ const EditBusinessDetailsModal = (_this) => {
       <Modal
         centered
         title={
-          <p className="font-bold text-xl text-center text-grayDark pb-4">Edit Business Details</p>
+          <p className="font-bold text-xl text-center text-grayDark pb-4 flex justify-center items-center gap-2">
+            <MdBusiness size={25} className="text-secondary" /> Edit Business Details
+          </p>
         }
-        style={{
-          marginTop: '3%',
-          marginBottom: '3%'
-        }}
         open={_this.editBusinessDetailsModalVisibility}
         onOk={() => _this.setEditBusinessDetailsModalVisibility(false)}
         onCancel={_this.onModalClose}
         width={450}
         footer={null}
+        className="relative my-3"
       >
-        <div className="flex flex-col gap-2.5 h-full w-full justify-center items-center pb-3">
+        <div className="flex flex-col gap-2.5 w-full justify-center items-center pb-3">
           <div>
             <p className="font-semibold text-grayMedium">Business Description :</p>
             <TextArea
@@ -72,10 +72,7 @@ const EditBusinessDetailsModal = (_this) => {
               </Button>
               <Select
                 showSearch
-                className="h-9"
-                style={{
-                  width: '265px'
-                }}
+                className="h-9 w-[265px]"
                 value={_this.businessDetails.country_code}
                 onChange={(value) => {
                   _this.setBusinessDetails((prev) => ({
@@ -103,19 +100,14 @@ const EditBusinessDetailsModal = (_this) => {
 
           <div className="w-[317px]">
             <p className="font-semibold text-grayMedium">Phone :</p>
-            <Input.Group compact className="w-full flex flex-row">
+            <div className="flex">
               <Button className="text-white bg-primary h-[35px]">
                 <FaPhoneAlt size={20} />
               </Button>
               <Input
                 placeholder="Phone"
-                className="font-semibold h-[35px] text-md shadow-md tracking-wider"
-                style={{
-                  width: '262px'
-                }}
+                className="font-semibold h-[35px] text-md shadow-md tracking-wider w-[264px] -ml-1 rounded-l-none"
                 value={_this.businessDetails.business_phone}
-                // parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                // value={_this.businessDetails ? _this.businessDetails.business_phone : ''}
                 onChange={(e) => {
                   _this.setBusinessDetails((prev) => ({
                     ...prev,
@@ -123,7 +115,7 @@ const EditBusinessDetailsModal = (_this) => {
                   }));
                 }}
               />
-            </Input.Group>
+            </div>
           </div>
 
           <div className="w-[317px]">
@@ -142,11 +134,8 @@ const EditBusinessDetailsModal = (_this) => {
                     onClick={_this.onAddService}
                   />
                 }
-                style={{
-                  width: '262px'
-                }}
                 placeholder="Service title"
-                className="font-semibold h-8 text-base shadow-md"
+                className="font-semibold h-8 text-base shadow-md w-[262px]"
                 value={_this.servicesInput}
                 onChange={(e) => {
                   _this.setServicesInput(e.target.value);
