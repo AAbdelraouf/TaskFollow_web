@@ -14,14 +14,14 @@ import {
 
 const items = [
   {
-    key: '/dashboard',
+    key: '/dashboard/business',
     icon: <PieChartOutlined className="py-2" />,
     cildren: '',
     label: 'Dashboard',
     type: ''
   },
   {
-    key: '/dashboard/shared-tasks',
+    key: '/dashboard/customer',
     icon: <DesktopOutlined className="py-2" />,
     children: '',
     label: 'Shared Tasks',

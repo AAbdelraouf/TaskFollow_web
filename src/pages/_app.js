@@ -38,29 +38,28 @@ const WrappingContainer = ({ Component, pageProps }) => {
   useEffect(() => {
     // This use Effect is only used to load localstorage data into redux on page reload.
 
-    dispatch(
-      loadSessionFromLocal(
-        localStorage.getItem('userSession') ? JSON.parse(localStorage.getItem('userSession')) : null
-      )
-    );
+    const userData = localStorage.getItem('userSession')
+      ? JSON.parse(localStorage.getItem('userSession'))
+      : null;
 
-    const userData = JSON.parse(localStorage.getItem('userSession'));
-    const data = {
-      email: userData?.email,
-      refresh_token: userData?.active_session_refresh_token
-    };
-    dispatch(loadingStart());
-    API.auth
-      .GetAccessToken(data)
-      .then((response) => {
-        if (response) {
-          const temp = { ...userData, access_token: response.access_token };
-          dispatch(login(temp));
-        }
-      })
-      .finally(() => {
-        dispatch(loadingStop());
-      });
+    dispatch(loadSessionFromLocal(userData));
+
+    // const data = {
+    //   email: userData?.email,
+    //   refresh_token: userData?.active_session_refresh_token
+    // };
+    // dispatch(loadingStart());
+    // API.auth
+    //   .GetAccessToken(data)
+    //   .then((response) => {
+    //     if (response) {
+    //       const temp = { ...userData, access_token: response.access_token };
+    //       dispatch(login(temp));
+    //     }
+    //   })
+    //   .finally(() => {
+    //     dispatch(loadingStop());
+    //   });
   }, []);
 
   return (
