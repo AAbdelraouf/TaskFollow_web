@@ -106,6 +106,19 @@ const business = {
       response = e;
     }
     return handleResponse(response);
+  },
+  EditProfile: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/business/edit-profile', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
   }
 };
 
