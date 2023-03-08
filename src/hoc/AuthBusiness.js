@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-import Body from './Body';
-import API from '@/api';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadingStart, loadingStop, login } from '@/redux/action';
+import { Page403 } from '@/components';
 
-const AuthBusiness = (prop) => {
+const AuthBusiness = (props) => {
   const router = useRouter();
   const userSession = useSelector((state) => state.session.userSession);
-  const dispatch = useDispatch();
 
-  return (
-    <main>
-      <Body {..._this} />
-    </main>
-  );
+  return !userSession || userSession.account_type != 'business' ? <Page403 /> : props.children;
 };
 
 export default AuthBusiness;
