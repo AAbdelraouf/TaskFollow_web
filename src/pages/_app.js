@@ -9,6 +9,9 @@ import store from '@/redux/store';
 import Config from '@/config';
 import API from '@/api';
 
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+import locale from 'antd/locale/zh_CN';
 import '@/styles/globals.css';
 //import 'antd/dist/reset.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -76,6 +79,7 @@ const WrappingContainer = ({ Component, pageProps }) => {
         draggable
         pauseOnHover
       />
+
       <Component {...pageProps} />
     </>
   );
