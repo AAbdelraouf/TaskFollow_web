@@ -73,7 +73,7 @@ const Settings = () => {
   const onAddService = () => {
     const value = [...businessDetails.business_services_offered, servicesInput];
 
-    if (servicesInput == '') {
+    if (servicesInput === '') {
     } else {
       setBusinessDetails((prev) => ({
         ...prev,
