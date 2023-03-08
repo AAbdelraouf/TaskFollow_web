@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Card } from 'antd';
+import { Card, Progress, Space, Tooltip, Button } from 'antd';
 import { FaPlusCircle } from 'react-icons/fa';
-import { FiPlusCircle } from 'react-icons/fi';
 import { MdDeleteForever, MdEditNote } from 'react-icons/md';
 import styles from '@/styles/Task.module.css';
 
@@ -16,10 +15,11 @@ const TaskList = (_this) => {
           {_this.taskList?.map((task) => {
             const expected_start_date = new Date(task.expected_start_date);
             const due_date = new Date(task.due_date);
+            // console.log(task);
             return (
               <Card
                 key={task._id}
-                className={`bg-white shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-72 ${
+                className={`bg-background shadow-md hover:shadow-lg min-h-36 border border-l-8 border-green-600 overflow-visible w-full md:w-72 ${
                   task.priority === 'low'
                     ? `border-txtLow `
                     : task.priority === 'medium'
@@ -28,24 +28,54 @@ const TaskList = (_this) => {
                 } `}
                 bordered={false}
                 actions={[
-                  <MdEditNote
-                    size={25}
-                    key="edit"
-                    className="w-full p-0 flex justify-center items-center text-grayDark "
-                  />,
-                  <MdDeleteForever
-                    onClick={() => {
-                      _this.setDeleteTaskModalVisibility(true);
-                      _this.setDeleteTaskData((prev) => ({
-                        ...prev,
-                        title: task.title,
-                        id: task._id
-                      }));
-                    }}
-                    size={25}
-                    key="delete"
-                    className="w-full p-0 flex justify-center items-center text-secondary"
-                  />
+                  <Tooltip placement="topLeft" title="Edit Task">
+                    <Button className="bg-grayMedium" block>
+                      <MdEditNote
+                        size={25}
+                        key="edit"
+                        className="w-full p-0 flex justify-center items-center text-grayDark"
+                        onClick={() => {
+                          _this.setEditTaskModalVisibility(true);
+                          _this.setEditTaskData((prev) => ({
+                            ...prev,
+                            task_id: task._id,
+                            update_obj: {
+                              title: task.title,
+                              description: task.description,
+                              customer_email: task.customer_email,
+                              assignees: task.assignees,
+                              status: task.status,
+                              due_date: task.due_date.toString().split('T').slice(0, 1).join(' '),
+                              expected_start_date: task.expected_start_date
+                                .toString()
+                                .split('T')
+                                .slice(0, 1)
+                                .join(' '),
+                              priority: task.priority
+                            },
+                            watchers: task.watchers
+                          }));
+                        }}
+                      />
+                    </Button>
+                  </Tooltip>,
+                  <Tooltip placement="topRight" title="Delete Task">
+                    <Button className="bg-secondary" block>
+                      <MdDeleteForever
+                        onClick={() => {
+                          _this.setDeleteTaskModalVisibility(true);
+                          _this.setDeleteTaskData((prev) => ({
+                            ...prev,
+                            title: task.title,
+                            id: task._id
+                          }));
+                        }}
+                        size={25}
+                        key="delete"
+                        className="w-full p-0 flex justify-center items-center text-secondary"
+                      />
+                    </Button>
+                  </Tooltip>
                 ]}
               >
                 <div className="flex flex-col justify-center items-center">
@@ -66,7 +96,7 @@ const TaskList = (_this) => {
                         {task.priority}
                       </div>
                     </div>
-                    <div className="font-normal text-grayDark max-w-[180px] sm:max-w-full">
+                    <div className="font-normal text-grayDark max-w-[180px] sm:max-w-full leading-tight">
                       {task.description}
                     </div>
                     <div className="flex justify-start items-start gap-1 mt-4">
@@ -77,7 +107,7 @@ const TaskList = (_this) => {
                         {expected_start_date.toDateString().split(' ').slice(1).join(' ')}
                       </p>
                     </div>
-                    <div className="flex justify-start items-start gap-1">
+                    <div className="flex justify-start items-start gap-1 mb-2">
                       <div className="flex justify-between items-center text-xs text-grayDark w-full font-semibold">
                         Due Date:
                       </div>
@@ -85,30 +115,40 @@ const TaskList = (_this) => {
                         {due_date.toDateString().split(' ').slice(1).join(' ')}
                       </p>
                     </div>
-                    <div className="flex justify-start items-start gap-1 mb-2">
-                      <div className="flex justify-between items-center text-xs text-grayDark w-full font-semibold">
-                        Progress
-                      </div>
-                      <p className="text-xs text-grayMedium font-bold mt-0 whitespace-nowrap">
-                        {task.progress}
-                      </p>
-                    </div>
                     <hr className="w-full border-grayDark mb-2" />
-                    <div className="flex justify-start items-start gap-1">
-                      <div className="flex justify-between items-center text-xs text-grayDark w-full font-semibold">
-                        Milestones:
+                    <div className="flex justify-between items-center">
+                      <div className=" flex flex-col items-between gap-1 mt-2">
+                        <div className="flex justify-start items-start gap-1">
+                          <div className=" text-xs text-grayDark w-full font-semibold">
+                            Milestones:
+                          </div>
+                          <p className="text-xs text-grayMedium font-bold mt-0 whitespace-nowrap">
+                            {task.milestone_count}
+                          </p>
+                        </div>
+                        <div className="flex justify-start items-start gap-1">
+                          <div className="text-xs text-grayDark w-full font-semibold">
+                            Watchers:
+                          </div>
+                          <p className="text-xs text-grayMedium font-bold mt-0 whitespace-nowrap">
+                            {task.watchers.length}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs text-grayMedium font-bold mt-0 whitespace-nowrap">
-                        {task.milestone_count}
-                      </p>
-                    </div>
-                    <div className="flex justify-start items-start gap-1">
-                      <div className="flex justify-between items-center text-xs text-grayDark w-full font-semibold">
-                        Watchers:
-                      </div>
-                      <p className="text-xs text-grayMedium font-bold mt-0 whitespace-nowrap">
-                        {task.watchers.length}
-                      </p>
+
+                      <Space size={50}>
+                        <Progress
+                          className="font-semibold text-grayMedium"
+                          size="small"
+                          percent={
+                            task.progress.toString().includes('.')
+                              ? task.progress.toFixed(1)
+                              : task.progress
+                          }
+                          status="active"
+                          type="dashboard"
+                        />
+                      </Space>
                     </div>
                   </div>
                 </div>

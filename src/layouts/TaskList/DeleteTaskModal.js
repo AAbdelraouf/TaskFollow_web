@@ -32,7 +32,7 @@ const DeleteTaskModal = (_this) => {
             <Button
               icon={<MdDeleteForever size={20} />}
               onClick={() => _this.onTaskDelete()}
-              className=" flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
+              className="flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
             >
               Delete
             </Button>

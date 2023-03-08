@@ -14,6 +14,19 @@ const task = {
     }
     return handleResponse(response);
   },
+  EditTask: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/task/edit-task', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (e) {
+      response = e;
+    }
+    return handleResponse(response);
+  },
   DeleteTask: async (data) => {
     const token = await getToken();
     let response = null;

@@ -111,12 +111,7 @@ const Index = () => {
   };
 
   const onCustomerCardClick = (email) => {
-    router.push({
-      pathname: `/dashboard/business/task/${email}`,
-      query: {
-        customer_email: email
-      }
-    });
+    router.push(`/dashboard/business/task/${email}`);
   };
 
   const _this = {
