@@ -28,53 +28,48 @@ const TaskList = (_this) => {
                 } `}
                 bordered={false}
                 actions={[
-                  <Tooltip placement="topLeft" title="Edit Task">
-                    <Button className="bg-grayMedium" block>
-                      <MdEditNote
-                        size={25}
-                        key="edit"
-                        className="w-full p-0 flex justify-center items-center text-grayDark"
-                        onClick={() => {
-                          _this.setEditTaskModalVisibility(true);
-                          _this.setEditTaskData((prev) => ({
-                            ...prev,
-                            task_id: task._id,
-                            update_obj: {
-                              title: task.title,
-                              description: task.description,
-                              customer_email: task.customer_email,
-                              assignees: task.assignees,
-                              status: task.status,
-                              due_date: task.due_date.toString().split('T').slice(0, 1).join(' '),
-                              expected_start_date: task.expected_start_date
-                                .toString()
-                                .split('T')
-                                .slice(0, 1)
-                                .join(' '),
-                              priority: task.priority
-                            },
-                            watchers: task.watchers
-                          }));
-                        }}
-                      />
-                    </Button>
-                  </Tooltip>,
-                  <Tooltip placement="topRight" title="Delete Task">
-                    <Button className="bg-secondary" block>
-                      <MdDeleteForever
-                        onClick={() => {
-                          _this.setDeleteTaskModalVisibility(true);
-                          _this.setDeleteTaskData((prev) => ({
-                            ...prev,
+                  <Tooltip placement="topLeft" title="Edit Task" key="edit-task">
+                    <MdEditNote
+                      size={25}
+                      key="edit"
+                      className="w-full p-0 flex justify-center items-center text-grayDark"
+                      onClick={() => {
+                        _this.setEditTaskModalVisibility(true);
+                        _this.setEditTaskData((prev) => ({
+                          ...prev,
+                          task_id: task._id,
+                          update_obj: {
                             title: task.title,
-                            id: task._id
-                          }));
-                        }}
-                        size={25}
-                        key="delete"
-                        className="w-full p-0 flex justify-center items-center text-secondary"
-                      />
-                    </Button>
+                            description: task.description,
+                            customer_email: task.customer_email,
+                            assignees: task.assignees,
+                            status: task.status,
+                            due_date: task.due_date.toString().split('T').slice(0, 1).join(' '),
+                            expected_start_date: task.expected_start_date
+                              .toString()
+                              .split('T')
+                              .slice(0, 1)
+                              .join(' '),
+                            priority: task.priority
+                          },
+                          watchers: task.watchers
+                        }));
+                      }}
+                    />
+                  </Tooltip>,
+                  <Tooltip placement="topRight" title="Delete Task" key="delete-task">
+                    <MdDeleteForever
+                      onClick={() => {
+                        _this.setDeleteTaskModalVisibility(true);
+                        _this.setDeleteTaskData((prev) => ({
+                          ...prev,
+                          title: task.title,
+                          id: task._id
+                        }));
+                      }}
+                      size={25}
+                      className="w-full p-0 flex justify-center items-center text-secondary"
+                    />
                   </Tooltip>
                 ]}
               >
