@@ -44,12 +44,12 @@ const TaskList = (_this) => {
                             customer_email: task.customer_email,
                             assignees: task.assignees,
                             status: task.status,
-                            due_date: task.due_date.toString().split('T').slice(0, 1).join(' '),
-                            expected_start_date: task.expected_start_date
-                              .toString()
-                              .split('T')
-                              .slice(0, 1)
-                              .join(' '),
+                            due_date: task.due_date, //.toString().split('T').slice(0, 1).join(' '),
+                            expected_start_date: task.expected_start_date,
+                            // .toString()
+                            // .split('T')
+                            // .slice(0, 1)
+                            // .join(' '),
                             priority: task.priority
                           },
                           watchers: task.watchers

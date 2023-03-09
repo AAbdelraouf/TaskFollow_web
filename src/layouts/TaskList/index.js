@@ -49,10 +49,10 @@ const Index = () => {
     watchers: []
   });
 
-  console.log(editTaskData);
+  console.log(customer_email);
   useEffect(() => {
-    getTaskList();
-  }, []);
+    if (customer_email) getTaskList();
+  }, [customer_email]);
 
   const getTaskList = () => {
     dispatch(loadingStart());
