@@ -1,4 +1,7 @@
 import React from 'react';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en';
+dayjs.locale('en');
 import { Modal, Input, Button, Select, DatePicker } from 'antd';
 import { FaUserPlus, FaUsers } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
@@ -174,17 +177,13 @@ const EditTaskModal = (_this) => {
                 style={{
                   width: '240px'
                 }}
-                placeholder={_this.editTaskData.update_obj.due_date}
-                // defaultPickerValue={due_date}
+                // value={dayjs().format('YYYY-MM-DD')}
+                // locale={locale}
+                // value={due_date}
                 onChange={(value) => {
-                  const year = value.$y;
-                  let month = value.$M + 1;
-                  month = month.toString().padStart(2, '0');
-                  let day = value.$D;
-                  day = day.toString().padStart(2, '0');
                   _this.setEditTaskData((prev) => ({
                     ...prev,
-                    update_obj: { ...prev.update_obj, due_date: `${year}-${month}-${day}` }
+                    update_obj: { ...prev.update_obj, due_date: dayjs(value).format('YYYY-MM-DD') }
                   }));
                 }}
               />
