@@ -16,7 +16,7 @@ const RemoveAssociatedWatcherModal = (_this) => {
       footer={null}
     >
       <div className="flex flex-col justify-center items-center pt-6">
-        Are you sure you want to remove the assocaited account
+        Are you sure you want to remove the associated account
         <span className="font-semibold"> {_this.removeWatcherDetails.watcher}</span>
         <div className="flex mt-4">
           <Button
