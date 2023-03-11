@@ -39,6 +39,19 @@ const task = {
       response = e;
     }
     return handleResponse(response);
+  },
+  DeleteWatcher: async (data) => {
+    const token = await getToken();
+    let response = null;
+    try {
+      response = await api.post('v1/task/delete-watcher', data, {
+        params: {},
+        headers: { Authorization: 'Bearer: ' + token }
+      });
+    } catch (error) {
+      response = error;
+    }
+    return handleResponse(response);
   }
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { Modal, Input, Button, Select, DatePicker } from 'antd';
 import { FaUserPlus, FaUsers } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
@@ -64,24 +65,24 @@ const AddNewTask = (_this) => {
                 onChange={(value) => {
                   _this.setAddNewTaskData((prev) => ({
                     ...prev,
-                    status: _this.makeCamelCaseWords(value)
+                    status: value
                   }));
                 }}
-                options={_this.statusList.map((item, index) => ({
+                options={Object.keys(_this.statusList).map((item, index) => ({
                   label: (
                     <div className="flex flex-row justify-start items-center" key={index}>
                       <div
-                        className={` ml-2${
-                          item == 'Assigned'
+                        className={` ml-2 ${
+                          item == 'assigned'
                             ? ` text-radiantBlue `
-                            : item == 'In Progress'
+                            : item == 'inProgress'
                             ? ` text-pending`
-                            : item == 'On Hold'
+                            : item == 'onHold'
                             ? ` text-grayMedium`
                             : ` text-completed`
                         }`}
                       >
-                        {item}
+                        {_this.statusList[item]}
                       </div>
                     </div>
                   ),
@@ -145,15 +146,17 @@ const AddNewTask = (_this) => {
                   width: '240px'
                 }}
                 placeholder="Expected Start Date"
+                value={
+                  _this.addNewTaskData.expected_start_date
+                    ? _this.addNewTaskData.expected_start_date != '0000-00-00'
+                      ? dayjs(_this.addNewTaskData.expected_start_date)
+                      : null
+                    : null
+                }
                 onChange={(value) => {
-                  const year = value.$y;
-                  let month = value.$M + 1;
-                  month = month.toString().padStart(2, '0');
-                  let day = value.$D;
-                  day = day.toString().padStart(2, '0');
                   _this.setAddNewTaskData((prev) => ({
                     ...prev,
-                    expected_start_date: `${year}-${month}-${day}`
+                    expected_start_date: dayjs(value).format('YYYY-MM-DD')
                   }));
                 }}
               />
@@ -172,15 +175,17 @@ const AddNewTask = (_this) => {
                   width: '240px'
                 }}
                 placeholder="Due Date"
+                value={
+                  _this.addNewTaskData.due_date
+                    ? _this.addNewTaskData.due_date != '0000-00-00'
+                      ? dayjs(_this.addNewTaskData.due_date)
+                      : null
+                    : null
+                }
                 onChange={(value) => {
-                  const year = value.$y;
-                  let month = value.$M + 1;
-                  month = month.toString().padStart(2, '0');
-                  let day = value.$D;
-                  day = day.toString().padStart(2, '0');
                   _this.setAddNewTaskData((prev) => ({
                     ...prev,
-                    due_date: `${year}-${month}-${day}`
+                    due_date: dayjs(value).format('YYYY-MM-DD')
                   }));
                 }}
               />
@@ -224,7 +229,7 @@ const AddNewTask = (_this) => {
               <FaUserPlus size={30} className="text-secondary ml-2" onClick={_this.onAddWatcher} />
             </Input.Group>
           </div>
-          {_this.addNewTaskData?.watchers?.map((item, index) => (
+          {_this.addNewTaskData?.watchers.map((item, index) => (
             <div
               className={`flex justify-between items-center w-[290px] rounded-full px-2 mb-2 my-1 h-7 ${
                 _this.customer_email === item ? 'bg-secondary' : 'bg-lightRed'
