@@ -57,7 +57,6 @@ const Index = () => {
     watchers: []
   });
 
-  console.log(editTaskData);
   useEffect(() => {
     if (customer_email !== '') {
       setAddNewTaskData((prev) => ({
@@ -271,7 +270,6 @@ const Index = () => {
       .replace(/\s+/g, '');
   };
 
-  console.log(removeWatcherDetails);
   const _this = {
     taskList,
     addNewTaskModalVisibility,
