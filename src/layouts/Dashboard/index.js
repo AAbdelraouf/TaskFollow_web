@@ -110,10 +110,6 @@ const Index = () => {
       .finally(() => dispatch(loadingStop()));
   };
 
-  const onCustomerCardClick = (email) => {
-    router.push(`/dashboard/business/task/${email}`);
-  };
-
   const _this = {
     addCustomerModalVisibility,
     setAddCustomerModalVisibility,
@@ -131,8 +127,7 @@ const Index = () => {
     deleteCustomerModalVisibility,
     setDeleteCustomerModalVisibility,
     deleteCustomerData,
-    setDeleteCustomerData,
-    onCustomerCardClick
+    setDeleteCustomerData
   };
   return (
     <Container>

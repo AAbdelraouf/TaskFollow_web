@@ -11,14 +11,22 @@ const Index = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const userSession = useSelector((state) => state.session.userSession);
-  const { customer_email } = router.query;
-  const statusList = ['Assigned', 'In Progress', 'On Hold', 'Completed'];
+  const customer_email = router.query.customer_email;
+  const statusList = {
+    assigned: 'Assigned',
+    inProgress: 'In Progress',
+    onHold: 'On Hold',
+    completed: 'Completed'
+  };
   const priorityList = ['Low', 'Medium', 'High'];
   const [taskList, setTaskList] = useState([]);
   const [watchersInput, setWatchersInput] = useState('');
   const [addNewTaskModalVisibility, setAddNewTaskModalVisibility] = useState(false);
   const [removeWtacherArrayIndex, setRemoveWatcherArrayIndex] = useState();
+  const [removeWatcherDetails, setRemoveWatcherDetails] = useState({ id: '', watcher: '' });
   const [removePrimaryWatcherModalVisibility, setRemovePrimaryWatcherModalVisibility] =
+    useState(false);
+  const [removeAssociatedWatcherModalVisibility, setRemoveAssociatedWatcherModalVisibility] =
     useState(false);
   const [deleteTaskModalVisibility, setDeleteTaskModalVisibility] = useState(false);
   const [editTaskModalVisibility, setEditTaskModalVisibility] = useState(false);
@@ -49,9 +57,17 @@ const Index = () => {
     watchers: []
   });
 
-  console.log(customer_email);
+  console.log(editTaskData);
   useEffect(() => {
-    if (customer_email) getTaskList();
+    if (customer_email !== '') {
+      setAddNewTaskData((prev) => ({
+        ...prev,
+        customer_email: customer_email,
+        assignees: [userSession.email],
+        watchers: [customer_email]
+      }));
+      getTaskList();
+    }
   }, [customer_email]);
 
   const getTaskList = () => {
@@ -88,7 +104,6 @@ const Index = () => {
       .CreateNewTask(addNewTaskData)
       .then((response) => {
         if (response) {
-          console.log(response);
           getTaskList();
           setAddNewTaskModalVisibility(false);
           setAddNewTaskData({
@@ -125,13 +140,11 @@ const Index = () => {
     }
     const temp = { ...editTaskData };
     temp.watchers = temp.watchers.map((item) => item.watcher);
-    console.log('temp', temp);
     dispatch(loadingStart());
     API.task
       .EditTask(temp)
       .then((response) => {
         if (response) {
-          console.log(response);
           getTaskList();
           setEditTaskModalVisibility(false);
           setEditTaskData({
@@ -180,7 +193,6 @@ const Index = () => {
     } else if (editTaskModalVisibility === true) {
       if (watchersInput === '') return toast.error('BlanK watchers cannot be added');
       const temp = [...editTaskData.watchers, { watcher: watchersInput }];
-      console.log(temp);
       setEditTaskData((prev) => ({
         ...prev,
         watchers: temp
@@ -202,8 +214,16 @@ const Index = () => {
       }));
     } else if (editTaskModalVisibility === true) {
       const temp = [...editTaskData.watchers];
-      if (editTaskData.watchers[index].watcher === customer_email) {
-        return setRemoveWatcherArrayIndex(index), setRemovePrimaryWatcherModalVisibility(true);
+      if (editTaskData.watchers[index]._id) {
+        return (
+          setRemoveAssociatedWatcherModalVisibility(true),
+          setRemoveWatcherDetails((prev) => ({
+            ...prev,
+            id: editTaskData.watchers[index]._id,
+            watcher: editTaskData.watchers[index].watcher
+          })),
+          setRemoveWatcherArrayIndex(index)
+        );
       }
       temp.splice(index, 1);
       setEditTaskData((prev) => ({
@@ -224,12 +244,22 @@ const Index = () => {
       setRemovePrimaryWatcherModalVisibility(false);
     } else if (editTaskModalVisibility === true) {
       const temp = [...editTaskData.watchers];
-      temp.splice(removeWtacherArrayIndex, 1);
-      setEditTaskData((prev) => ({
-        ...prev,
-        watchers: temp
-      }));
-      setRemovePrimaryWatcherModalVisibility(false);
+
+      // dispatch(loadingStart());
+      API.task.DeleteWatcher({ id: removeWatcherDetails.id }).then((response) => {
+        if (response) {
+          getTaskList();
+          toast.success('Watcher removed successfully');
+          temp.splice(removeWtacherArrayIndex, 1);
+          setEditTaskData((prev) => ({
+            ...prev,
+            watchers: temp
+          }));
+          setRemoveAssociatedWatcherModalVisibility(false);
+          setRemoveWatcherDetails((prev) => ({ ...prev, id: '', watcher: '' }));
+        }
+      });
+      // .finally(() => dispatch(loadingStop()));
     }
   };
 
@@ -240,6 +270,8 @@ const Index = () => {
       })
       .replace(/\s+/g, '');
   };
+
+  console.log(removeWatcherDetails);
   const _this = {
     taskList,
     addNewTaskModalVisibility,
@@ -267,7 +299,11 @@ const Index = () => {
     setEditTaskModalVisibility,
     editTaskData,
     setEditTaskData,
-    onEditTaskClick
+    onEditTaskClick,
+    removeAssociatedWatcherModalVisibility,
+    setRemoveAssociatedWatcherModalVisibility,
+    removeWatcherDetails,
+    setRemoveWatcherDetails
   };
 
   return (
