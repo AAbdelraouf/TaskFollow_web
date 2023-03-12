@@ -21,7 +21,7 @@ const items = [
     type: ''
   },
   {
-    key: '/dashboard/customer',
+    key: '/dashboard/shared-tasks',
     icon: <DesktopOutlined className="py-2" />,
     children: '',
     label: 'Shared Tasks',
