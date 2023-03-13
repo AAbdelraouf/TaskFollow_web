@@ -7,12 +7,11 @@ import API from '@/api';
 import { useRouter } from 'next/router';
 import { loadingStart, loadingStop, login, logout } from '@/redux/action';
 import { toast } from 'react-toastify';
-import country_code from '@/utility/country.json';
+import countryList from '@/utility/country.json';
 
 const Settings = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [countryList, setCountryList] = useState(country_code.country_code);
   const [passwordModalVisibility, setPasswordModalVisibility] = useState(false);
   const [deleteAccountModalVisibility, setDeleteAccountModalVisibility] = useState(false);
   const [editProfileModalVisibility, setEditProfileModalVisibility] = useState(false);
@@ -225,7 +224,7 @@ const Settings = () => {
     onUpdateBusinessDetails,
     editProfileModalVisibility,
     setEditProfileModalVisibility,
-    countryList,
+    countryList: countryList.country_code,
     onEditProfileSubmit,
     profileDetails,
     setProfileDetails,
