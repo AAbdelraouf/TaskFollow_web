@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCollapsed, setActiveRoute } from '@/redux/action';
 import { Menu, Input } from 'antd';
 import {
   SettingOutlined,
@@ -16,7 +17,7 @@ const items = [
   {
     key: '/dashboard/business',
     icon: <PieChartOutlined className="py-2" />,
-    cildren: '',
+    children: '',
     label: 'Dashboard',
     type: ''
   },
@@ -38,26 +39,25 @@ const items = [
 
 const Container = (props) => {
   const router = useRouter();
-  const [currentKey, setCurrentKey] = useState();
-  const [collapsed, setCollapsed] = useState(true);
+  const dispatch = useDispatch();
   const userSession = useSelector((state) => state.session.userSession);
+  const { collapsed, activeRoute } = useSelector((state) => state.navigation);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) setCollapsed(false);
-      else setCollapsed(true);
-    });
-    setCurrentKey(router.pathname);
+    if (collapsed == null) {
+      if (window.innerWidth > 768) dispatch(setCollapsed(false));
+      else dispatch(setCollapsed(true));
+    }
   }, []);
 
   const onMenuClick = ({ key }) => {
     router.push(key);
-    setCurrentKey(key);
-    if (window.innerWidth < 768) setCollapsed(true);
+    dispatch(setActiveRoute(key));
+    if (window.innerWidth && window.innerWidth < 768) dispatch(setCollapsed(true));
   };
 
   const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
+    dispatch(setCollapsed(!collapsed));
   };
 
   return (
@@ -94,8 +94,8 @@ const Container = (props) => {
           <Menu
             onClick={onMenuClick}
             className="bg-white border-[0px]"
-            defaultSelectedKeys={[currentKey]}
-            defaultOpenKeys={[]}
+            selectedKeys={[activeRoute]}
+            defaultSelectedKeys={['/dashboard/business']}
             mode="inline"
             inlineCollapsed={collapsed}
             items={items}
