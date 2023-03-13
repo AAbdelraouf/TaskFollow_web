@@ -2,9 +2,7 @@ import React from 'react';
 import { Modal, Input, Button, Select, InputNumber } from 'antd';
 const { TextArea } = Input;
 import { FaPhoneAlt, FaGlobeAmericas } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
 import { BsPlusSquareFill } from 'react-icons/bs';
-import { HiMinus } from 'react-icons/hi';
 import { RxCross2 } from 'react-icons/rx';
 import { MdBusiness } from 'react-icons/md';
 

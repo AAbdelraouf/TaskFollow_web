@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-``` bash
+```bash
 npm run dev
 ```
 
@@ -15,6 +15,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [Rsuite](https://rsuitejs.com/components/overview/) is used as UI Library. Please use components from there.
 - [LangingPageSample](https://dribbble.com/shots/15496797-Website-Log-in-Page)
+
+## Code Structure
+
+Navigation file for dashboard is in container.
 
 ## Colors used
 

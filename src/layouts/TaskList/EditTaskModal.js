@@ -14,6 +14,8 @@ import {
   MdOutlinePlaylistAddCheck
 } from 'react-icons/md';
 
+const generatePriorityColor = () => {};
+
 const EditTaskModal = (_this) => {
   return (
     <Modal
@@ -23,7 +25,6 @@ const EditTaskModal = (_this) => {
       onCancel={() => _this.setEditTaskModalVisibility(false)}
       width={500}
       footer={null}
-      // key={_this.editTaskData.task_id}
     >
       <div className="flex flex-col justify-center items-center pt-4">
         <div className="flex justify-center items-center gap-2 text-xl font-semibold pb-4">
@@ -64,7 +65,7 @@ const EditTaskModal = (_this) => {
             <Select
               className="w-[240px] h-9"
               placeholder={_this.editTaskData.update_obj.status}
-              value={_this.statusList[_this.editTaskData.update_obj.status]}
+              value={_this.editTaskData.update_obj.status}
               onChange={(value) => {
                 _this.setEditTaskData((prev) => ({
                   ...prev,
@@ -76,11 +77,11 @@ const EditTaskModal = (_this) => {
                   <div className="flex flex-row justify-start items-center" key={index}>
                     <div
                       className={` ml-2 ${
-                        _this.statusList[item] == 'Assigned'
+                        item == 'assigned'
                           ? ` text-radiantBlue `
-                          : _this.statusList[item] == 'In Progress'
+                          : item == 'inProgress'
                           ? ` text-pending`
-                          : _this.statusList[item] == 'On Hold'
+                          : item == 'onHold'
                           ? ` text-grayMedium`
                           : ` text-completed`
                       }`}
