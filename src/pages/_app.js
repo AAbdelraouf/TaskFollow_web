@@ -40,29 +40,11 @@ const WrappingContainer = ({ Component, pageProps }) => {
 
   useEffect(() => {
     // This use Effect is only used to load localstorage data into redux on page reload.
-
     const userData = localStorage.getItem('userSession')
       ? JSON.parse(localStorage.getItem('userSession'))
       : null;
 
     dispatch(loadSessionFromLocal(userData));
-
-    // const data = {
-    //   email: userData?.email,
-    //   refresh_token: userData?.active_session_refresh_token
-    // };
-    // dispatch(loadingStart());
-    // API.auth
-    //   .GetAccessToken(data)
-    //   .then((response) => {
-    //     if (response) {
-    //       const temp = { ...userData, access_token: response.access_token };
-    //       dispatch(login(temp));
-    //     }
-    //   })
-    //   .finally(() => {
-    //     dispatch(loadingStop());
-    //   });
   }, []);
 
   return (
