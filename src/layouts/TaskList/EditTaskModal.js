@@ -67,7 +67,6 @@ const EditTaskModal = (_this) => {
               placeholder={_this.editTaskData.update_obj.status}
               value={_this.editTaskData.update_obj.status}
               onChange={(value) => {
-                console.log('on change', value);
                 _this.setEditTaskData((prev) => ({
                   ...prev,
                   update_obj: { ...prev.update_obj, status: value }
