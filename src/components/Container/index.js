@@ -38,12 +38,22 @@ const items = [
 
 const Container = (props) => {
   const router = useRouter();
-  const currentKey = router.pathname;
-  const [collapsed, setCollapsed] = useState(false);
+  const [currentKey, setCurrentKey] = useState();
+  const [collapsed, setCollapsed] = useState(true);
   const userSession = useSelector((state) => state.session.userSession);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) setCollapsed(false);
+      else setCollapsed(true);
+    });
+    setCurrentKey(router.pathname);
+  }, []);
 
   const onMenuClick = ({ key }) => {
     router.push(key);
+    setCurrentKey(key);
+    if (window.innerWidth < 768) setCollapsed(true);
   };
 
   const toggleCollapsed = () => {
