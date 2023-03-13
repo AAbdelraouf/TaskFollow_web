@@ -3,7 +3,7 @@ import ChangePasswordModal from './ChangePasswordModal';
 import BusinessDetails from './BusinessDetails';
 import DeleteAccountModal from './DeleteAccountModal';
 import EditBusinessDetailsModal from './EditBusinessDetailsModal';
-import EditProfile from './EditProfile';
+import EditProfile from './EditProfileModal';
 
 const Body = (_this) => {
   return (
