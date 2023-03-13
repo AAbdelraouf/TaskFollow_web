@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Input, Button } from 'antd';
 import { FaUser, FaUserEdit } from 'react-icons/fa';
 
-const EditProfile = (_this) => {
+const EditProfileModal = (_this) => {
   return (
     <>
       <Modal
@@ -43,4 +43,4 @@ const EditProfile = (_this) => {
   );
 };
 
-export default EditProfile;
+export default EditProfileModal;
