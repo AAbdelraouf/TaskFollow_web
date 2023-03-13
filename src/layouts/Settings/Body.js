@@ -3,7 +3,7 @@ import ChangePasswordModal from './ChangePasswordModal';
 import BusinessDetails from './BusinessDetails';
 import DeleteAccountModal from './DeleteAccountModal';
 import EditBusinessDetailsModal from './EditBusinessDetailsModal';
-import EditProfile from './EditProfileModal';
+import EditProfileModal from './EditProfileModal';
 
 const Body = (_this) => {
   return (
@@ -12,7 +12,7 @@ const Body = (_this) => {
       <DeleteAccountModal {..._this} />
       <BusinessDetails {..._this} />
       <EditBusinessDetailsModal {..._this} />
-      <EditProfile {..._this} />
+      <EditProfileModal {..._this} />
     </>
   );
 };
