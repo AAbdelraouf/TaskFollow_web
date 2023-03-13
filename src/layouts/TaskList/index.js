@@ -305,11 +305,9 @@ const Index = () => {
   };
 
   return (
-    <div>
-      <Container>
-        <Body {..._this} />
-      </Container>
-    </div>
+    <Container>
+      <Body {..._this} />
+    </Container>
   );
 };
 
