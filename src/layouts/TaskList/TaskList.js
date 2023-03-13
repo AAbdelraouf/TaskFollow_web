@@ -28,11 +28,13 @@ const TaskList = (_this) => {
                 } `}
                 bordered={false}
                 actions={[
-                  <MdEditNote
-                    size={25}
-                    key="edit"
-                    className="w-full p-0 flex justify-center items-center text-grayDark "
-                  />,
+                  <div className="bg-secondary">
+                    <MdEditNote
+                      size={25}
+                      key="edit"
+                      className="w-full p-0 flex justify-center items-center text-grayDark bg-red-600"
+                    />
+                  </div>,
                   <MdDeleteForever
                     onClick={() => {
                       _this.setDeleteTaskModalVisibility(true);
