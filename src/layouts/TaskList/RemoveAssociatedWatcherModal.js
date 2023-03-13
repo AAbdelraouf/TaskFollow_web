@@ -2,23 +2,29 @@ import React from 'react';
 import { Modal, Button } from 'antd';
 import { MdDeleteForever, MdCancel } from 'react-icons/md';
 
-const RemovePrimaryWatcherModal = (_this) => {
+const RemoveAssociatedWatcherModal = (_this) => {
   return (
     <Modal
       top
-      open={_this.removePrimaryWatcherModalVisibility}
-      onOk={() => _this.setRemovePrimaryWatcherModalVisibility(false)}
-      onCancel={() => _this.setRemovePrimaryWatcherModalVisibility(false)}
+      open={_this.removeAssociatedWatcherModalVisibility}
+      onOk={() => _this.setRemoveAssociatedWatcherModalVisibility(false)}
+      onCancel={() => (
+        _this.setRemoveAssociatedWatcherModalVisibility(false),
+        _this.setRemoveWatcherDetails((prev) => ({ ...prev, id: '', watcher: '' }))
+      )}
       width={400}
       footer={null}
     >
       <div className="flex flex-col justify-center items-center pt-6">
-        Are you sure you want to remove the primary account
-        <span className="font-semibold"> {_this.customer_email}</span>
+        Are you sure you want to remove the associated account
+        <span className="font-semibold"> {_this.removeWatcherDetails.watcher}</span>
         <div className="flex mt-4">
           <Button
             icon={<MdCancel size={20} className="mr-1" />}
-            onClick={() => _this.setRemovePrimaryWatcherModalVisibility(false)}
+            onClick={() => (
+              _this.setRemoveAssociatedWatcherModalVisibility(false),
+              _this.setRemoveWatcherDetails((prev) => ({ ...prev, id: '', watcher: '' }))
+            )}
             className="flex items-center justify-center mx-2 bg-primary text-white shadow-md"
           >
             Cancel
@@ -36,4 +42,4 @@ const RemovePrimaryWatcherModal = (_this) => {
   );
 };
 
-export default RemovePrimaryWatcherModal;
+export default RemoveAssociatedWatcherModal;

@@ -60,6 +60,7 @@ const Settings = () => {
 
       setProfileDetails((prev) => ({
         ...prev,
+        name: userSession.name,
         phone: extracted_business_phone,
         country_code: extracted_country_code
       }));
@@ -73,8 +74,7 @@ const Settings = () => {
   const onAddService = () => {
     const value = [...businessDetails.business_services_offered, servicesInput];
 
-    if (servicesInput == '') {
-    } else {
+    if (servicesInput !== '') {
       setBusinessDetails((prev) => ({
         ...prev,
         business_services_offered: value
