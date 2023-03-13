@@ -4,16 +4,14 @@ import { useSelector } from 'react-redux';
 import Body from './Body';
 import { Container } from '@/components';
 import API from '@/api';
-import { logout } from '@/redux/action';
 import { useRouter } from 'next/router';
-import { loadingStart, loadingStop, login } from '@/redux/action';
+import { loadingStart, loadingStop, login, logout } from '@/redux/action';
 import { toast } from 'react-toastify';
 import country_code from '@/utility/country.json';
 
 const Settings = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [categories, setCategories] = useState([]);
   const [countryList, setCountryList] = useState(country_code.country_code);
   const [passwordModalVisibility, setPasswordModalVisibility] = useState(false);
   const [deleteAccountModalVisibility, setDeleteAccountModalVisibility] = useState(false);
@@ -44,14 +42,13 @@ const Settings = () => {
 
   useEffect(() => {
     if (userSession) {
-      console.log(userSession);
       setDisplayBusinessPhone(userSession.business_details.business_phone);
-      // const display_business_phone = userSession.business_details.business_phone;
 
       const extracted_country_code = userSession.business_details.business_phone.split('-')[0];
       const extracted_business_phone = userSession.business_details.business_phone.split('-')[1];
+
       setBusinessDetails({
-        country_code: userSession.business_details.business_phone.split('-')[0],
+        country_code: extracted_country_code,
         business_phone: extracted_business_phone,
         business_address: userSession.business_details.business_address,
         business_description: userSession.business_details.business_description,
@@ -81,7 +78,6 @@ const Settings = () => {
       }));
       setServicesInput('');
     }
-    console.log(businessDetails.business_services_offered);
   };
 
   const onDeleteService = (index) => {
@@ -108,30 +104,21 @@ const Settings = () => {
   };
 
   const onUpdateBusinessDetails = () => {
-    // const input = businessDetails.business_phone;
-    // const regex = /[!@#$%^&*(),.?":;<>\{\}\[\]\\\/\+\-=]/g;
-    // if (regex.test(input)) {
-    //   return toast.error('Invalid Phone Number');
-    // }
-
-    console.log(businessDetails);
-
     const updated_business_phone =
       businessDetails.country_code + '-' + businessDetails.business_phone;
+
     dispatch(loadingStart());
     API.auth
       .UpdateBusinessDetails(businessDetails)
       .then((response) => {
         if (response) {
           toast.success(response.message);
-          console.log(response);
           const updatedSession = {
             ...userSession,
             country_code: businessDetails.country_code,
             business_details: { ...businessDetails, business_phone: updated_business_phone }
           };
           dispatch(login(updatedSession));
-          console.log(updatedSession);
           setEditBusinessDetailsModalVisibility(false);
           toast.success('Business Details Updated Sucessfully');
         }
@@ -199,7 +186,6 @@ const Settings = () => {
       .then((response) => {
         if (response) {
           toast.success(response.message);
-          console.log(response);
           const updatedSession = { ...userSession, name: profileDetails.name };
           dispatch(login(updatedSession));
           setProfileDetails((prev) => ({
@@ -218,7 +204,6 @@ const Settings = () => {
   };
 
   const _this = {
-    categories,
     handleLogout,
     passwordModalVisibility,
     setPasswordModalVisibility,
