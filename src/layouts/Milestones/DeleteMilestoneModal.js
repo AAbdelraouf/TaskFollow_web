@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Modal } from 'antd';
 import { MdDeleteForever, MdCancel } from 'react-icons/md';
 
-const DeleteTaskModal = (_this) => {
+const DeleteMilestoneModal = (_this) => {
   return (
     <Modal
       centered
-      open={_this.deleteTaskModalVisibility}
-      onOk={() => _this.setDeleteTaskModalVisibility(false)}
-      onCancel={() => _this.setDeleteTaskModalVisibility(false)}
+      open={_this.deleteMilestoneModalVisibility}
+      onOk={() => _this.setDeleteMilestoneModalVisibility(false)}
+      onCancel={() => _this.setDeleteMilestoneModalVisibility(false)}
       width={500}
       footer={null}
     >
@@ -16,20 +16,20 @@ const DeleteTaskModal = (_this) => {
         <div>
           <p>
             Are You Sure You want to delete
-            <span className="font-semibold"> {_this.deleteTaskData.title}</span>
+            <span className="font-semibold"> {_this.deleteMilestoneData.title}</span>
           </p>
         </div>
         <div className="mt-6 flex justify-end items-end">
           <Button
             icon={<MdCancel size={20} className="mr-1" />}
-            onClick={() => _this.setDeleteTaskModalVisibility(false)}
+            onClick={() => _this.setDeleteMilestoneModalVisibility(false)}
             className="flex items-center justify-center mx-2 bg-primary text-white shadow-md"
           >
             Cancel
           </Button>
           <Button
             icon={<MdDeleteForever size={20} />}
-            onClick={() => _this.onTaskDelete()}
+            onClick={() => _this.onDeleteMilestone()}
             className="flex items-center justify-center mx-2 bg-secondary text-white shadow-md"
           >
             Delete
@@ -40,4 +40,4 @@ const DeleteTaskModal = (_this) => {
   );
 };
 
-export default DeleteTaskModal;
+export default DeleteMilestoneModal;

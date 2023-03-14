@@ -30,7 +30,12 @@ module.exports = {
         lightRed: '#fb7185',
         radiantBlue: '#2B5DF5',
         tomato: '#FF6347',
-        bgAssigned: 'rgba(255, 0, 0, 0.2)'
+        bgAssigned: '#0097e6',
+        assignedBody: 'rgba(72, 113, 247, 0.1)',
+        bgInProgress: '#fbc531',
+        inProgressBody: 'rgba(250, 244, 211, 0.5)',
+        bgCompleted: '#5BF08E',
+        completedBody: 'rgba(0, 255, 0, 0.1)'
       },
       screens: {
         xs: { max: '515px' }
