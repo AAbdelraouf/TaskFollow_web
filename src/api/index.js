@@ -8,7 +8,7 @@ const API = {
   auth,
   business,
   task,
-  customer
+  customer,
   milestone
 };
 
