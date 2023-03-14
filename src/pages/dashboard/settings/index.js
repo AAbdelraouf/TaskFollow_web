@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Settings from '@/layouts/Settings';
+import AuthSession from '@/hoc/AuthSession';
 
 const Page = () => {
   return (
@@ -12,7 +13,9 @@ const Page = () => {
         />
         <title>TaskFollow | Your Task Manager Dashboard</title>
       </Head>
-      <Settings />
+      <AuthSession>
+        <Settings />
+      </AuthSession>
     </>
   );
 };
