@@ -1,11 +1,11 @@
 import { api, handleResponse, getToken } from '@/api/core';
 
-const task = {
-  GetTaskDetails: async (data) => {
+const milestone = {
+  CreateMilestone: async (data) => {
     const token = await getToken();
     let response = null;
     try {
-      response = await api.post('v1/task/fetch-task', data, {
+      response = await api.post('v1/milestone/create-milestone', data, {
         params: {},
         headers: { Authorization: 'Bearer: ' + token }
       });
@@ -14,50 +14,39 @@ const task = {
     }
     return handleResponse(response);
   },
-  CreateNewTask: async (data) => {
+
+  GetMilestoneDetails: async (data) => {
     const token = await getToken();
     let response = null;
     try {
-      response = await api.post('v1/task/create-task', data, {
+      response = await api.post('v1/milestone/fetch-milestone', data, {
         params: {},
         headers: { Authorization: 'Bearer: ' + token }
       });
-    } catch (e) {
-      response = e;
+    } catch (error) {
+      response = error;
     }
     return handleResponse(response);
   },
-  EditTask: async (data) => {
+
+  EditMilestoneDetails: async (data) => {
     const token = await getToken();
     let response = null;
     try {
-      response = await api.post('v1/task/edit-task', data, {
+      response = await api.post('v1/milestone/edit-milestone', data, {
         params: {},
         headers: { Authorization: 'Bearer: ' + token }
       });
-    } catch (e) {
-      response = e;
+    } catch (error) {
+      response = error;
     }
     return handleResponse(response);
   },
-  DeleteTask: async (data) => {
+  DeleteMilestone: async (data) => {
     const token = await getToken();
     let response = null;
     try {
-      response = await api.post('v1/task/delete-task', data, {
-        params: {},
-        headers: { Authorization: 'Bearer: ' + token }
-      });
-    } catch (e) {
-      response = e;
-    }
-    return handleResponse(response);
-  },
-  DeleteWatcher: async (data) => {
-    const token = await getToken();
-    let response = null;
-    try {
-      response = await api.post('v1/task/delete-watcher', data, {
+      response = await api.post('v1/milestone/delete-milestone', data, {
         params: {},
         headers: { Authorization: 'Bearer: ' + token }
       });
@@ -68,4 +57,4 @@ const task = {
   }
 };
 
-export default task;
+export default milestone;

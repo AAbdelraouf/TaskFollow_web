@@ -15,7 +15,7 @@ module.exports = {
         completed: '#5BF08E',
         txtLow: '#15803d',
         low: '#86efac',
-        txtMedium: '#facc15',
+        txtMedium: '#eab308',
         medium: '#fef3c7',
         txtHigh: '#b91c1c',
         high: '#f87171',
@@ -28,7 +28,14 @@ module.exports = {
         backIcon: '#EF9A9A',
         red: '#D7032A',
         lightRed: '#fb7185',
-        radiantBlue: '#2B5DF5'
+        radiantBlue: '#2B5DF5',
+        tomato: '#FF6347',
+        bgAssigned: '#0097e6',
+        assignedBody: 'rgba(72, 113, 247, 0.1)',
+        bgInProgress: '#fbc531',
+        inProgressBody: 'rgba(250, 244, 211, 0.5)',
+        bgCompleted: '#5BF08E',
+        completedBody: 'rgba(0, 255, 0, 0.1)'
       },
       screens: {
         xs: { max: '515px' }
